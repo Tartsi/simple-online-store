@@ -15,10 +15,11 @@ def login():
 
 @app.route("/testdatabase")
 def test_database():
+
     if db.engine.execute("SELECT 1"):
         return 'DB connection'
-    else:
-        return 'Error: DB connection not working'
+
+    return 'ERROR'
 
 
 if __name__ == "__main__":
