@@ -18,7 +18,7 @@ CREATE TABLE IF NOT EXISTS shopping_cart (
     quantity INTEGER NOT NULL DEFAULT 0,
     total_price DECIMAL NOT NULL,
     FOREIGN KEY (user_id) REFERENCES users,
-    FOREIGN KEY (product_id) REFERENCES products,
+    FOREIGN KEY (product_id) REFERENCES products
 );
 CREATE TABLE IF NOT EXISTS completed_orders (
     id SERIAL PRIMARY KEY,
