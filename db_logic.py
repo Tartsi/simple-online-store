@@ -17,3 +17,8 @@ def add_user(username, password, admin):
         print(f"Error: {e}")
         db.session.rollback()
         return False
+
+
+with app.app_context():
+    # For testing purposes only
+    pass
