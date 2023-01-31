@@ -5,63 +5,16 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/static/login.css">
     <title>Login</title>
-    <style>
-        body {
-            background-color: #f2f2f2;
-            font-family: Arial, sans-serif;
-        }
-
-        .container {
-            width: 50%;
-            margin: 0 auto;
-            text-align: center;
-        }
-
-        h1 {
-            font-size: 36px;
-            margin-bottom: 20px;
-            color: #333;
-        }
-
-        form {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            margin-top: 40px;
-        }
-
-        label {
-            font-size: 18px;
-            margin-bottom: 10px;
-        }
-
-        input[type="text"],
-        input[type="password"] {
-            width: 50%;
-            padding: 12px 20px;
-            margin-bottom: 20px;
-            box-sizing: border-box;
-            border: 2px solid rgb(11, 11, 11);
-            border-radius: 4px;
-        }
-
-        input[type="submit"] {
-            background-color: #4CAF50;
-            color: white;
-            padding: 14px 20px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-
-        input[type="submit"]:hover {
-            background-color: #45a049;
-        }
-    </style>
 </head>
 
 <body>
+
+    <a href="/">
+        <h2>Go back!</h2>
+    </a>
+
     <form action="/login" , method="POST">
         <label for="username">Username:</label>
         <input type="text" , id="username" , name="username">
@@ -71,6 +24,7 @@
         <hr>
         <input type="submit" , value="Proceed!">
     </form>
+
 
 </body>
 

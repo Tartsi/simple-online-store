@@ -6,55 +6,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registration</title>
-    <style>
-        h1 {
-            text-align: center;
-            font-family: Arial, sans-serif;
-        }
-
-        form {
-            margin: 0 auto;
-            width: 50%;
-            padding: 20px;
-            border: 1px solid #ccc;
-            border-radius: 10px;
-            text-align: left;
-            font-family: Arial, sans-serif;
-        }
-
-        label {
-            font-weight: bold;
-            margin-top: 10px;
-            display: block;
-        }
-
-        input[type="text"],
-        input[type="password"] {
-            width: 100%;
-            padding: 10px;
-            margin-top: 10px;
-            border-radius: 5px;
-            border: 1px solid #ccc;
-        }
-
-        input[type="submit"] {
-            width: 100%;
-            margin-top: 20px;
-            padding: 10px;
-            background-color: lightblue;
-            border: none;
-            border-radius: 5px;
-            font-weight: bold;
-            cursor: pointer;
-        }
-
-        input[type="submit"]:hover {
-            background-color: lightskyblue;
-        }
-    </style>
+    <link rel="stylesheet" type="text/css" href="/static/register.css">
 </head>
 
 <body>
+
+    <a href="/">
+        <h2>Go back!</h2>
+    </a>
+
     <h1>Register New User</h1>
 
     <form action="/register" method="post">
@@ -66,8 +26,23 @@
         <br><br>
         <label for="conf_password">Confirm password:</label>
         <input type="password" id="confirm" name="confirm">
-        <input type="submit" value="Register">
+        <input type="submit" value="Register" , onclick="checkPassword()">
     </form>
+
+    <script>
+        function checkPassword() {
+
+            var password = document.getElementById("password");
+            var confirmPassword = document.getElementById("confirmPassword");
+
+            if (password !== confirmPassword) {
+                alert("Passwords do not match");
+                document.getElementById("password").value = "";
+                document.getElementById("confirmPassword").value = "";
+            }
+
+        }
+    </script>
 </body>
 
 </html>
