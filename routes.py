@@ -1,4 +1,4 @@
-from flask import render_template, redirect, request
+from flask import render_template, redirect, request, session
 from app import app
 from db import db
 
@@ -15,7 +15,23 @@ def register():
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
-    return render_template("login.html")
+
+    if request.method == "GET":
+        return render_template("login.html")
+
+    if request.method == "POST":
+
+        username = request.form["username"]
+        password = request.form["password"]
+
+        session["username"] = username
+        return redirect("/")
+
+
+@app.route("/logout")
+def logout():
+    del session["username"]
+    return redirect("/")
 
 
 @app.route("/testdatabase")

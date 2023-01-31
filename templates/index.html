@@ -9,10 +9,20 @@
 </head>
 
 <body>
+
+    {% if session.username %}
+
+    <p>Olet kirjautunut nimellä: {{ session.username }}</p>
+    <a href="/logout">Kirjaudu ulos!</a>
+
+    {% else %}
+
     <h2>Welcome to my Web-Store application!</h2>
     <p>Please proceed to login page in order to view products available!</p>
     <a href="/login">Login!</a>
     <p>If you do not have an account yet, please consider <a href="/register">registering here!</a></p>
+
+    {% endif %}
 </body>
 
 </html>
