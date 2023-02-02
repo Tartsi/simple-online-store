@@ -1,5 +1,5 @@
 from db import db
-from werkzeug.security import check_password_hash, generate_password_hash
+from werkzeug.security import generate_password_hash
 from app import app
 
 

@@ -1,4 +1,5 @@
 from flask import render_template, redirect, request, session
+import utils
 from app import app
 from db import db
 
@@ -23,6 +24,9 @@ def login():
 
         username = request.form["username"]
         password = request.form["password"]
+
+        if utils.login(username, password) == False:
+            return render_template("login.html", error=True)
 
         session["username"] = username
         return redirect("/")

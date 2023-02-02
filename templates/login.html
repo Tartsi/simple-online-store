@@ -25,6 +25,14 @@
         <input type="submit" , value="Proceed!">
     </form>
 
+    {% if error %}
+    <script>
+        function show_error() {
+            alert("Wrong username or password!");
+        }
+        show_error();
+    </script>
+    {% endif %}
 
 </body>
 
