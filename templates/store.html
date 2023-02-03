@@ -11,6 +11,7 @@
 
 <body>
 
+
     <div class="header">
         <p><i>You are logged in as user:</i> <strong>{{ session.username }}</strong></p>
         <strong><a href="/logout">Log out</a></strong>
@@ -25,6 +26,11 @@
             </form>
         </div>
 
+        {% if products|length == 0 %}
+
+        <h2 style="text-align: center">There are currently no products available!</h2>
+
+        {% else %}
         <div class="product-list">
             <h2>All products:</h2>
             {% for product in products %}
@@ -36,6 +42,7 @@
             </div>
             {% endfor %}
         </div>
+        {% endif %}
 </body>
 
 </html>

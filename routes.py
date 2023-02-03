@@ -47,11 +47,6 @@ def logout():
 @app.route("/store")
 def store():
     products = utils.get_all_products()
-
-    if products is None:
-        # TODO: tyhjä kauppa
-        pass
-
     return render_template("store.html", products=products)
 
 
