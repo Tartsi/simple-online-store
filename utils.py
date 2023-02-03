@@ -19,13 +19,13 @@ def login(username, password):
     return (user[0], username, user[2])
 
 
-def select_all_products():
+def get_all_products():
 
     sql = "SELECT id, name, description, price, amount FROM products"
     query_result = db.session.execute(sql).fetchall()
 
     if len(query_result) == 0:
-        return False
+        return None
 
     return query_result
 

@@ -5,25 +5,37 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/static/store.css">
     <title>Document</title>
 </head>
 
 <body>
 
-    <p>Olet kirjautunut nimellä: {{ session.username }}</p>
-    <a href="/logout">Kirjaudu ulos!</a>
+    <div class="header">
+        <p><i>You are logged in as user:</i> <strong>{{ session.username }}</strong></p>
+        <strong><a href="/logout">Log out</a></strong>
+    </div>
 
-    <h2>Search for products:</h2>
-    <form>
-        <input type="text" name="search_query">
-        <input type="submit" value="Search">
-    </form>
-    <h2>Results:</h2>
-    {% for product in products %}
-    <p>Item name: {{ product.name }}</p>
-    <p>Item price: {{ product.price }}</p>
-    <hr>
-    {% endfor %}
+    <div class="container">
+        <div class="search-form">
+            <h2>Search for products:</h2>
+            <form>
+                <input type="text" name="search_query">
+                <input type="submit" value="Search">
+            </form>
+        </div>
+
+        <div class="product-list">
+            <h2>All products:</h2>
+            {% for product in products %}
+            <div class="product-item">
+                <h3>Item name: {{ product.name }}</h3>
+                <p>Description: {{ product.description }}</p>
+                <p>Item price: {{ product.price }}</p>
+                <p>Current stock: {{ product.amount }}</p>
+            </div>
+            {% endfor %}
+        </div>
 </body>
 
 </html>
