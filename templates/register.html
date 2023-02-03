@@ -29,7 +29,7 @@
 
         <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
 
-        <input type="submit" value="Register" , onclick="return checkPassword()">
+        <input type="submit" value="Register" , onclick="return checkUsernameAndPassword()">
 
     </form>
 
@@ -43,12 +43,30 @@
     {% endif %}
 
     <script>
-        function checkPassword() {
+        function checkUsernameAndPassword() {
+
+            let username = document.getElementById("username").value;
+
+            if (username.length < 4) {
+                alert("Username must be atleast 4 characters long!")
+                document.getElementById("username").value = "";
+                return false;
+            }
+
+            let onlyLetters = /^[A-Za-z]+$/;
+
+            if (!onlyLetters.test(username)) {
+                alert("Username can only contain characters from A-Z!")
+                document.getElementById("username").value = "";
+                return false;
+            }
 
             let password = document.getElementById("password").value;
 
             if (password.length < 5) {
-                alert("Password must be at least 5 characters")
+                alert("Password must be at least 5 characters long!")
+                document.getElementById("password").value = "";
+                document.getElementById("confirm").value = "";
                 return false;
             }
 
@@ -56,6 +74,8 @@
 
             if (!hasNumber.test(password)) {
                 alert("Password must include atleast 1 number!")
+                document.getElementById("password").value = "";
+                document.getElementById("confirm").value = "";
                 return false;
             }
 
