@@ -33,10 +33,32 @@
 
     </form>
 
+    {% if error %}
+    <script>
+        function showError() {
+            alert("This username is already in use!");
+        }
+        showError();
+    </script>
+    {% endif %}
+
     <script>
         function checkPassword() {
 
             let password = document.getElementById("password").value;
+
+            if (password.length < 5) {
+                alert("Password must be at least 5 characters")
+                return false;
+            }
+
+            let hasNumber = /\d/;
+
+            if (!hasNumber.test(password)) {
+                alert("Password must include atleast 1 number!")
+                return false;
+            }
+
             let confirmPassword = document.getElementById("confirm").value;
 
             if (password !== confirmPassword) {

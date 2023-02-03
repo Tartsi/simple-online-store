@@ -1,6 +1,7 @@
 import os
 from flask import render_template, redirect, request, session
 import utils
+import db_logic
 from app import app
 from db import db
 
@@ -12,7 +13,21 @@ def index():
 
 @app.route("/register", methods=["GET", "POST"])
 def register():
-    return render_template("register.html")
+
+    if request.method == "GET":
+        return render_template("register.html")
+
+    if request.method == "POST":
+
+        username = request.form["username"]
+        password = request.form["password"]
+
+        result = db_logic.add_user(username, password, 0)
+
+        if result is False:
+            return render_template("register.html", error=True)
+
+        return render_template("login.html", success=True)
 
 
 @app.route("/login", methods=["GET", "POST"])
