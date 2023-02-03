@@ -35,13 +35,18 @@ def login():
         session["user_id"] = result[0]
         session["admin_status"] = result[2]
         session["csrf_token"] = os.urandom(16).hex()
-        return redirect("/")
+        return redirect("/store")
 
 
 @app.route("/logout")
 def logout():
     del session["username"]
     return redirect("/")
+
+
+@app.route("/store")
+def store():
+    return render_template("store.html")
 
 
 @app.route("/testdatabase")
