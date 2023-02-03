@@ -26,21 +26,23 @@
         <br><br>
         <label for="conf_password">Confirm password:</label>
         <input type="password" id="confirm" name="confirm">
-        <input type="submit" value="Register" , onclick="checkPassword()">
+        <input type="submit" value="Register" , onclick="return checkPassword()">
     </form>
 
     <script>
         function checkPassword() {
 
-            var password = document.getElementById("password");
-            var confirmPassword = document.getElementById("confirmPassword");
+            let password = document.getElementById("password").value;
+            let confirmPassword = document.getElementById("confirm").value;
 
             if (password !== confirmPassword) {
                 alert("Passwords do not match");
                 document.getElementById("password").value = "";
-                document.getElementById("confirmPassword").value = "";
+                document.getElementById("confirm").value = "";
+                return false;
             }
 
+            return true;
         }
     </script>
 </body>

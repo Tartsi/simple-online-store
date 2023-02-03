@@ -22,17 +22,33 @@
         <label for="password">Password:</label>
         <input type="password" , id="password" , name="password">
         <hr>
-        <input type="submit" , value="Proceed!">
+        <input type="submit" , value="Proceed!" , onclick="return checkIfEmpty()">
     </form>
 
     {% if error %}
     <script>
-        function show_error() {
+        function showError() {
             alert("Wrong username or password!");
         }
-        show_error();
+        showError();
     </script>
     {% endif %}
+
+    <script>
+        function checkIfEmpty() {
+
+            let username = document.getElementById("username").value;
+            let password = document.getElementById("password").value;
+
+            if (username == "" || password == "") {
+                alert("Username or password field cannot be empty!");
+                return false;
+            }
+
+            return true;
+
+        }
+    </script>
 
 </body>
 
