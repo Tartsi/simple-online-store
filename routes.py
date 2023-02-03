@@ -28,7 +28,7 @@ def login():
 
         result = utils.login(username, password)
 
-        if result == False:
+        if result is False:
             return render_template("login.html", error=True)
 
         session["username"] = username

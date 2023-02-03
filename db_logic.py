@@ -10,11 +10,11 @@ def add_user(username, password, admin):
         sql = "INSERT INTO users (username, password, admin) VALUES (:username, :password, :admin)"
 
         db.session.execute(sql, {
-                           "username": username, "password": generate_password_hash(password), "admin": admin})
+            "username": username, "password": generate_password_hash(password), "admin": admin})
         db.session.commit()
         return True
-    except Exception as e:
-        print(f"Error: {e}")
+    except Exception as error:
+        print(f"Error: {error}")
         db.session.rollback()
         return False
 

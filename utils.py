@@ -10,10 +10,10 @@ def login(username, password):
 
     user = query_result.fetchone()
 
-    if user == None:
+    if user is None:
         return False
 
-    if check_password_hash(user[1], password) == False:
+    if check_password_hash(user[1], password) is False:
         return False
 
     return (user[0], username, user[2])
