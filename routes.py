@@ -1,3 +1,4 @@
+import os
 from flask import render_template, redirect, request, session
 import utils
 from app import app
@@ -25,10 +26,15 @@ def login():
         username = request.form["username"]
         password = request.form["password"]
 
-        if utils.login(username, password) == False:
+        result = utils.login(username, password)
+
+        if result == False:
             return render_template("login.html", error=True)
 
         session["username"] = username
+        session["user_id"] = result[0]
+        session["admin_status"] = result[2]
+        session["csrf_token"] = os.urandom(16).hex()
         return redirect("/")
 
 

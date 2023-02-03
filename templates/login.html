@@ -22,6 +22,8 @@
         <label for="password">Password:</label>
         <input type="password" , id="password" , name="password">
         <hr>
+        <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
+
         <input type="submit" , value="Proceed!" , onclick="return checkIfEmpty()">
     </form>
 

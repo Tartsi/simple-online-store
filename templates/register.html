@@ -17,7 +17,7 @@
 
     <h1>Register New User</h1>
 
-    <form action="/register" method="post">
+    <form action="/register" method="POST">
         <label for="username">Username:</label>
         <input type="text" id="username" name="username">
         <br><br>
@@ -26,7 +26,11 @@
         <br><br>
         <label for="conf_password">Confirm password:</label>
         <input type="password" id="confirm" name="confirm">
+
+        <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
+
         <input type="submit" value="Register" , onclick="return checkPassword()">
+
     </form>
 
     <script>
@@ -36,7 +40,7 @@
             let confirmPassword = document.getElementById("confirm").value;
 
             if (password !== confirmPassword) {
-                alert("Passwords do not match");
+                alert("Passwords do not match!");
                 document.getElementById("password").value = "";
                 document.getElementById("confirm").value = "";
                 return false;
