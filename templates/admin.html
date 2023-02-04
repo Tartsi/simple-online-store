@@ -11,9 +11,29 @@
 
 <body>
 
+    <a href="/">
+        <h2>Go back!</h2>
+    </a>
+
     {% if session.admin_status == 1 %}
 
-    <h2>Succesfull admin application</h2>
+    <h1>Admin Page</h1>
+
+    <h2 style="text-align: center">Add New Product</h2>
+    <form action="/add_product" method="POST">
+        <input type="text" name="product_name" placeholder="Product Name">
+        <input type="text" name="product_description" placeholder="Product Description">
+        <input type="number" name="product_price" placeholder="Product Price">
+        <input type="number" name="product_amount" placeholder="Product Amount">
+        <button type="submit">Add Product</button>
+    </form>
+
+    <h2 style="text-align: center">Increase Product Amount</h2>
+    <form action="/increase_product_amount" method="POST">
+        <input type="text" name="product_name" placeholder="Product Name">
+        <input type="number" name="increase_amount" placeholder="Amount to Increase">
+        <button type="submit">Increase Amount</button>
+    </form>
 
     {% endif %}
 

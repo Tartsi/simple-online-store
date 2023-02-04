@@ -74,6 +74,18 @@ def admin():
     return render_template("admin.html")
 
 
+@app.route("/add_product")
+def add_product():
+    # TODO: finish, this, html and css
+    pass
+
+
+@app.route("/increase_product_amount")
+def increase_product_amount():
+    # TODO: finish, this, html and css
+    pass
+
+
 @app.route("/testdatabase")
 def test_database():
 
