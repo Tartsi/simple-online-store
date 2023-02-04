@@ -15,16 +15,17 @@
         <h2>Go back!</h2>
     </a>
 
+    <h1>Login</h1>
+
     <form action="/login" , method="POST">
         <label for="username">Username:</label>
         <input type="text" , id="username" , name="username">
-        <hr>
+        <br><br>
         <label for="password">Password:</label>
         <input type="password" , id="password" , name="password">
-        <hr>
         <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
 
-        <input type="submit" , value="Proceed!" , onclick="return checkIfEmpty()">
+        <input type="submit" , value="Proceed" , onclick="return checkIfEmpty()">
     </form>
 
     {% if error %}

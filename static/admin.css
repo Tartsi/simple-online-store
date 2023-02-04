@@ -28,3 +28,7 @@
     border: 0;
     cursor: pointer;
   }
+
+  button[type="submit"]:hover {
+    background-color: black;
+  }
