@@ -34,6 +34,27 @@ def add_new_product(name, description, price, amount):
         return False
 
 
+def increase_product_amount(name, amount):
+
+    try:
+
+        sql = "UPDATE products SET amount = amount + :amount WHERE name = :name"
+
+        query_result = db.session.execute(
+            sql, {"amount": amount, "name": name})
+
+        if query_result.rowcount == 0:
+            return False
+
+        db.session.commit()
+        return True
+    except Exception as error:
+
+        print(f"Error: {error}")
+        db.session.rollback()
+        return False
+
+
 with app.app_context():
     # For testing purposes only
     pass

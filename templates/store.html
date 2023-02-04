@@ -17,6 +17,12 @@
         <strong><a href="/logout">Log out</a></strong>
     </div>
 
+    {% if session.admin_status == 1 %}
+    <strong>
+        <p style="text-align: center">Modify products</p>
+    </strong>
+    {% endif %}
+
     <div class="container">
         <div class="search-form">
             <h2>Search for products:</h2>
