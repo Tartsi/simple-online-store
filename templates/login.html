@@ -28,39 +28,19 @@
         <input type="submit" , value="Proceed" , onclick="return checkIfEmpty()">
     </form>
 
+    <script src="/static/login.js"></script>
+
     {% if error %}
     <script>
-        function showError() {
-            alert("Wrong username or password!");
-        }
         showError();
     </script>
     {% endif %}
 
     {% if success %}
     <script>
-        function showSuccess() {
-            alert("User created successfully! You can now login!");
-        }
         showSuccess();
     </script>
     {% endif %}
-
-    <script>
-        function checkIfEmpty() {
-
-            let username = document.getElementById("username").value;
-            let password = document.getElementById("password").value;
-
-            if (username == "" || password == "") {
-                alert("Username or password field cannot be empty!");
-                return false;
-            }
-
-            return true;
-
-        }
-    </script>
 
 </body>
 
