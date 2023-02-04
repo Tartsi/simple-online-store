@@ -61,7 +61,14 @@ def logout():
 
 @app.route("/store")
 def store():
-    products = utils.get_all_products()
+    query = utils.get_all_products()
+    products = []
+
+    for product in query:
+
+        if product[4] > 0:
+            products.append(product)
+
     return render_template("store.html", products=products)
 
 
