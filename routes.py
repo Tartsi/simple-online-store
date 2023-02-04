@@ -65,6 +65,15 @@ def store():
     return render_template("store.html", products=products)
 
 
+@app.route("/admin")
+def admin():
+
+    if session.get("admin_status") != 1:
+        return render_template("index.html", admin_message=True)
+
+    return render_template("admin.html")
+
+
 @app.route("/testdatabase")
 def test_database():
 

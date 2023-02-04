@@ -16,6 +16,15 @@
     <a href="/login">Login!</a>
     <p>If you do not have an account yet, please consider <a href="/register">registering here!</a></p>
 
+    {% if admin_message %}
+    <script>
+        function message() {
+            alert("Please do not try to access admin page without credentials!");
+        }
+        message();
+    </script>
+    {% endif %}
+
 </body>
 
 </html>
