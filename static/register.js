@@ -45,3 +45,7 @@ function checkUsernameAndPassword() {
 
     return true;
 }
+
+function showError() {
+    alert("This username is already in use!");
+}

@@ -33,16 +33,14 @@
 
     </form>
 
+    <script src="/static/register.js"></script>
+
     {% if error %}
     <script>
-        function showError() {
-            alert("This username is already in use!");
-        }
         showError();
     </script>
     {% endif %}
 
-    <script src="/static/register.js"></script>
 </body>
 
 </html>
