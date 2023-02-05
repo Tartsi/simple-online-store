@@ -26,28 +26,39 @@
     <div class="container">
         <div class="search-form">
             <h2>Search for products:</h2>
-            <form>
-                <input type="text" name="search_query">
+            <form action="/search" , method="POST">
+                <input type="text" name="search" , placeholder="Product name">
                 <input type="submit" value="Search">
+                <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
             </form>
         </div>
 
-        {% if products|length == 0 %}
+        {% if no_product_found %}
+
+        <h2 style="text-align: center">Could not find searched products!</h2>
+
+        {% elif products|length == 0 %}
 
         <h2 style="text-align: center">There are currently no products available!</h2>
 
         {% else %}
+
         <div class="product-list">
             <h2>All products:</h2>
+
             {% for product in products %}
+
             <div class="product-item">
                 <h3>Item name: {{ product.name }}</h3>
                 <p>Description: {{ product.description }}</p>
                 <p>Item price: {{ product.price }}</p>
                 <p>Current stock: {{ product.amount }}</p>
             </div>
+
             {% endfor %}
+
         </div>
+
         {% endif %}
 </body>
 

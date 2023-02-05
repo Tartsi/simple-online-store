@@ -69,12 +69,40 @@ def store():
     query = utils.get_all_products()
     products = []
 
+    if query is None:
+        return render_template("store.html", products=products)
+
     for product in query:
+
+        # Only add product if stock is higher than 0
 
         if product[4] > 0:
             products.append(product)
 
     return render_template("store.html", products=products)
+
+
+@app.route("/search", methods=["POST"])
+def search():
+
+    if request.method == "POST":
+
+        name = request.form["search"]
+
+        result = utils.search_products(name)
+        products = []
+
+        if result is None:
+            return render_template("store.html", products=products, no_product_found=True)
+
+        for product in result:
+
+            # Only add product if stock is higher than 0
+
+            if product[4] > 0:
+                products.append(product)
+
+        return render_template("store.html", products=products)
 
 
 @ app.route("/admin", methods=["GET", "POST"])
