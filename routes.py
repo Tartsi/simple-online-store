@@ -102,15 +102,25 @@ def add_product():
         )
 
         if result is False:
-            return render_template("admin.html", error=True)
+            return render_template("admin.html", duplicate_error=True)
 
-        return render_template("admin.html", success=True)
+        return render_template("admin.html", add_success=True)
 
 
-@ app.route("/increase_product_amount")
+@ app.route("/increase_product_amount", methods=["POST"])
 def increase_product_amount():
-    # TODO: finish, this, html and css
-    pass
+
+    if request.method == "POST":
+
+        product_name = request.form["increase_product_name"]
+        product_amount = request.form["increase_amount"]
+
+        result = db_logic.increase_product_amount(product_name, product_amount)
+
+        if result is False:
+            return render_template("admin.html", increase_error=True)
+
+        return render_template("admin.html", increase_success=True)
 
 
 @ app.route("/testdatabase")

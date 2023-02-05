@@ -74,10 +74,18 @@ function checkIncreaseStock() {
 
 }
 
-function showError() {
+function showDuplicateError() {
     alert("This product is already in the list of products!");
 }
 
-function showSuccess() {
+function showAddSuccess() {
     alert("Product has been successfully added!")
+}
+
+function showIncreaseError() {
+    alert("This product does not exist!")
+}
+
+function showIncreaseSuccess() {
+    alert("Product stock increased succesfully!")
 }

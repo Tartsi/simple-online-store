@@ -39,18 +39,29 @@
 
     <script src="/static/admin.js"></script>
 
-    {% if error %}
+    {% if duplicate_error %}
     <script>
-        showError();
+        showDuplicateError();
     </script>
     {% endif %}
 
-    {% if success %}
+    {% if add_success %}
     <script>
-        showSuccess();
+        showAddSuccess();
     </script>
     {% endif %}
 
+    {% if increase_error %}
+    <script>
+        showIncreaseError();
+    </script>
+    {% endif %}
+
+    {% if increase_success %}
+    <script>
+        showIncreaseSuccess();
+    </script>
+    {% endif %}
 </body>
 
 </html>
