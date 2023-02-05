@@ -61,46 +61,31 @@ def logout():
 
 @app.route("/store", methods=["GET"])
 def store():
+    """Displays store once login successfull
+    """
 
     if request.method == "GET":
         if "username" not in session:
             return render_template("index.html", login_message=True)
 
-    query = utils.get_all_products()
-    products = []
-
-    if query is None:
-        return render_template("store.html", products=products)
-
-    for product in query:
-
-        # Only add product if stock is higher than 0
-
-        if product[4] > 0:
-            products.append(product)
+    products = utils.get_all_products()
 
     return render_template("store.html", products=products)
 
 
 @app.route("/search", methods=["POST"])
 def search():
+    """Shows all products 
+    """
 
     if request.method == "POST":
 
         name = request.form["search"]
 
-        result = utils.search_products(name)
-        products = []
+        products = utils.search_products(name)
 
-        if result is None:
+        if products is None:
             return render_template("store.html", products=products, no_product_found=True)
-
-        for product in result:
-
-            # Only add product if stock is higher than 0
-
-            if product[4] > 0:
-                products.append(product)
 
         return render_template("store.html", products=products)
 

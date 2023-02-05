@@ -25,7 +25,8 @@ def login(username, password):
 
 def get_all_products():
 
-    sql = "SELECT id, name, description, price, amount FROM products"
+    sql = "SELECT id, name, description, price, amount FROM products WHERE amount > 0"
+
     query_result = db.session.execute(sql).fetchall()
 
     if len(query_result) == 0:
@@ -36,7 +37,8 @@ def get_all_products():
 
 def search_products(name):
 
-    sql = "SELECT id, name, description, price, amount FROM products WHERE name LIKE '%' || :name || '%'"
+    sql = """SELECT id, name, description, price, amount 
+    FROM products WHERE amount > 0 AND name LIKE '%' || :name || '%'"""
 
     query_result = db.session.execute(sql, {"name": name}).fetchall()
 
