@@ -49,4 +49,4 @@ INSERT INTO users (username, password, admin) VALUES ('admin', 'salasanasi', 1);
 
 - Käynnistä sovellus ajamalla routes.py-tiedoston koodi.
 
-- Voit halutessasi kokeilla tietokanta yhteyttä "osoite/testdatabase" linkin kautta.
+- Voit halutessasi kokeilla tietokanta yhteyttä "paikallinenosoite/testdatabase" linkin kautta.
