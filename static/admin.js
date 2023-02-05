@@ -49,7 +49,7 @@ function checkAddNewProduct() {
 function checkIncreaseStock() {
 
     let name = document.getElementById("increase_name").value;
-    let increase_amount = document.getElementById("increase_amount").value;
+    let increaseAmount = document.getElementById("increase_amount").value;
     let onlyLetters = /^[A-Za-z]+$/;
 
     if (name.length < 3) {
@@ -64,7 +64,7 @@ function checkIncreaseStock() {
         return false;
     }
 
-    if (increase_amount <= 0) {
+    if (increaseAmount <= 0) {
         alert("Amount to increase must be greater that 0!");
         document.getElementById("increase_amount").value = "";
         return false;
