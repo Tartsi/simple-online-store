@@ -2,6 +2,10 @@ from db import db
 from werkzeug.security import generate_password_hash
 from app import app
 
+"""
+This module makes changes to the database
+"""
+
 
 def add_user(username, password, admin):
 
