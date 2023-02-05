@@ -37,4 +37,14 @@ SECRET_KEY = käyttämä salainen avaimesi
 pip install -r ./project-dependencies.txt
 ```
 
-- Luo sovelluksen käyttämä tietokanta-pohja esimerkiksi kopioimalla tiedoston tables.sql-sisältö ja ajamalla se komentokehotteessa.
+- Luo sovelluksen tietokanta-skeema esimerkiksi kopioimalla tiedoston tables.sql-sisältö ja ajamalla se komentokehotteessa.
+
+- Luo ylläpitäjä-tason käyttäjä manuaalisesti suoraan tietokantaan komennolla:
+
+```
+INSERT INTO users (username, password, admin) VALUES ('admin', 'salasanasi', 1);
+```
+
+- Käynnistä sovellus ajamalla routes.py-tiedoston koodi.
+
+- Voit halutessasi kokeilla tietokanta yhteyttä "osoite/testdatabase" linkin kautta.
