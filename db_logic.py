@@ -22,7 +22,8 @@ def add_new_product(name, description, price, amount):
 
     try:
 
-        sql = "INSERT INTO products (name, description, price, amount) VALUES (:name, :description, :price, :amount)"
+        sql = """INSERT INTO products (name, description, price, amount)
+        VALUES (:name, :description, :price, :amount)"""
         db.session.execute(
             sql, {"name": name, "description": description, "price": price, "amount": amount})
         db.session.commit()
