@@ -45,6 +45,8 @@ pip install -r ./project-dependencies.txt
 INSERT INTO users (username, password, admin) VALUES ('admin', 'salasanasi', 1);
 ```
 
+- Väliaikaisesti tämä on ainoa tapa lisätä ylläpitäjä-tason käyttäjä sovellukseen. Ylläpitäjä-tason käyttäjä tarvitaan tuotteiden lisäämiseen tietokantaan.
+
 - Käynnistä sovellus ajamalla routes.py-tiedoston koodi.
 
 - Voit halutessasi kokeilla tietokanta yhteyttä "osoite/testdatabase" linkin kautta.
