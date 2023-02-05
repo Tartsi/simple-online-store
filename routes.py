@@ -75,7 +75,7 @@ def store():
 
 @app.route("/search", methods=["POST"])
 def search():
-    """Shows all products 
+    """Shows all products with the given input
     """
 
     if request.method == "POST":
