@@ -37,7 +37,7 @@ def get_all_products():
 
 def search_products(name):
 
-    sql = """SELECT id, name, description, price, amount 
+    sql = """SELECT id, name, description, price, amount
     FROM products WHERE amount > 0 AND name LIKE '%' || :name || '%'"""
 
     query_result = db.session.execute(sql, {"name": name}).fetchall()
