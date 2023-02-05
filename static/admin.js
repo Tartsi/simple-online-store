@@ -73,3 +73,11 @@ function checkIncreaseStock() {
     return true;
 
 }
+
+function showError() {
+    alert("This product is already in the list of products!");
+}
+
+function showSuccess() {
+    alert("Product has been successfully added!")
+}

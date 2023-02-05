@@ -39,6 +39,18 @@
 
     <script src="/static/admin.js"></script>
 
+    {% if error %}
+    <script>
+        showError();
+    </script>
+    {% endif %}
+
+    {% if success %}
+    <script>
+        showSuccess();
+    </script>
+    {% endif %}
+
 </body>
 
 </html>

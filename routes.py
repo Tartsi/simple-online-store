@@ -87,10 +87,24 @@ def admin():
     return render_template("admin.html")
 
 
-@ app.route("/add_product")
+@ app.route("/add_product", methods=["POST"])
 def add_product():
-    # TODO: finish, this, html and css
-    pass
+
+    if request.method == "POST":
+
+        product_name = request.form["add_product_name"]
+        product_description = request.form["product_description"]
+        product_price = request.form["product_price"]
+        product_amount = request.form["add_product_amount"]
+
+        result = db_logic.add_new_product(
+            product_name, product_description, product_price, product_amount
+        )
+
+        if result is False:
+            return render_template("admin.html", error=True)
+
+        return render_template("admin.html", success=True)
 
 
 @ app.route("/increase_product_amount")
