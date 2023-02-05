@@ -1,5 +1,5 @@
 import os
-from flask import render_template, redirect, request, session
+from flask import render_template, redirect, request, session, abort
 import utils
 import db_logic
 from app import app
@@ -59,8 +59,13 @@ def logout():
     return redirect("/")
 
 
-@app.route("/store")
+@app.route("/store", methods=["GET"])
 def store():
+
+    if request.method == "GET":
+        if "username" not in session:
+            return render_template("index.html", login_message=True)
+
     query = utils.get_all_products()
     products = []
 
@@ -72,28 +77,29 @@ def store():
     return render_template("store.html", products=products)
 
 
-@app.route("/admin")
+@ app.route("/admin", methods=["GET", "POST"])
 def admin():
 
-    if session.get("admin_status") != 1:
-        return render_template("index.html", admin_message=True)
+    if request.method == "GET":
+        if session.get("admin_status") != 1:
+            return render_template("index.html", admin_message=True)
 
     return render_template("admin.html")
 
 
-@app.route("/add_product")
+@ app.route("/add_product")
 def add_product():
     # TODO: finish, this, html and css
     pass
 
 
-@app.route("/increase_product_amount")
+@ app.route("/increase_product_amount")
 def increase_product_amount():
     # TODO: finish, this, html and css
     pass
 
 
-@app.route("/testdatabase")
+@ app.route("/testdatabase")
 def test_database():
 
     if db.engine.execute("SELECT 1"):
