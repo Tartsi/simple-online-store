@@ -17,3 +17,24 @@ Alustava tietokantataulurakenne:
 - Taulu ostoskärrylle
 - Taulu käsitellyille ostoksille/tilauksille
 - Taulu tuotearvosteluille
+
+## Välipalautus 2
+
+- Sovelluksen nykyinen tilanne (05.02.2023) tarjoaa mahdollisuuden rekisteröitymiseen, sisäänkirjautumiseen, tuotteiden selaamiseen ja etsimiseen ja ylläpitäjä-tason käyttäjille mahdollisuuden uusien tuotteiden lisäämiseen ja nykyisten tuotteiden varaston lisäämiseen.
+
+### Ohjeet testaamiseen
+
+- Kloonaa kansio ja siirry juurikansioon, minkä jälkeen luo .env-tiedosto, johon määrität käyttämäsi paikallisen tietokannan ja salaisen avaimen:
+
+```
+DATABASE_URL = käyttämä tietokantasi
+SECRET_KEY = käyttämä salainen avaimesi
+```
+
+- Aktivoi halutessasi virtuaaliympäristö, jonka jälkeen lataa vaaditut riippuvuudet:
+
+```
+pip install -r ./project-dependencies.txt
+```
+
+- Luo sovelluksen käyttämä tietokanta-pohja esimerkiksi kopioimalla tiedoston tables.sql-sisältö ja ajamalla se komentokehotteessa.
