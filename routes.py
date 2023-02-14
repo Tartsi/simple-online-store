@@ -1,7 +1,7 @@
 import os
 from flask import render_template, redirect, request, session
-import utils
-import db_logic
+import db_fetcher
+import db_manager
 from app import app
 from db import db
 
@@ -22,7 +22,7 @@ def register():
         username = request.form["username"]
         password = request.form["password"]
 
-        result = db_logic.add_user(username, password, 0)
+        result = db_manager.add_user(username, password, 0)
 
         if result is False:
             return render_template("register.html", error=True)
@@ -41,7 +41,7 @@ def login():
         username = request.form["username"]
         password = request.form["password"]
 
-        result = utils.login(username, password)
+        result = db_fetcher.login(username, password)
 
         if result is False:
             return render_template("login.html", error=True)
@@ -68,7 +68,7 @@ def store():
         if "username" not in session:
             return render_template("index.html", login_message=True)
 
-    products = utils.get_all_products()
+    products = db_fetcher.get_all_products()
 
     return render_template("store.html", products=products)
 
@@ -82,7 +82,7 @@ def search():
 
         name = request.form["search"]
 
-        products = utils.search_products(name)
+        products = db_fetcher.search_products(name)
 
         if products is None:
             return render_template("store.html", products=products, no_product_found=True)
@@ -110,7 +110,7 @@ def add_product():
         product_price = request.form["product_price"]
         product_amount = request.form["add_product_amount"]
 
-        result = db_logic.add_new_product(
+        result = db_manager.add_new_product(
             product_name, product_description, product_price, product_amount
         )
 
@@ -128,7 +128,8 @@ def increase_product_amount():
         product_name = request.form["increase_product_name"]
         product_amount = request.form["increase_amount"]
 
-        result = db_logic.increase_product_amount(product_name, product_amount)
+        result = db_manager.increase_product_amount(
+            product_name, product_amount)
 
         if result is False:
             return render_template("admin.html", increase_error=True)
