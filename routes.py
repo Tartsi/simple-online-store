@@ -90,6 +90,17 @@ def search():
         return render_template("store.html", products=products)
 
 
+@app.route("/add_review/<int:product_id>", methods=["GET", "POST"])
+def add_review(product_id):
+
+    if "user_id" not in session:
+        return redirect("/login")
+
+    user_id = session["user_id"]
+
+    return render_template("add_review.html")
+
+
 @ app.route("/admin", methods=["GET", "POST"])
 def admin():
 

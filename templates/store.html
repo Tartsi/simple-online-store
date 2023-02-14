@@ -54,6 +54,8 @@
                 <p>Description: {{ product.description }}</p>
                 <p>Item price: {{ product.price }}</p>
                 <p>Current stock: {{ product.amount }}</p>
+                <p>Rating:</p>
+                <a href="/add_review/{{ product.id }}" id="add-review-link">Add review</a>
             </div>
 
             {% endfor %}

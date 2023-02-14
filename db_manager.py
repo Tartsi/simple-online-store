@@ -39,6 +39,24 @@ def add_new_product(name, description, price, amount):
         return False
 
 
+def add_new_review(user_id, product_id, rating, description):
+
+    try:
+        sql = """INSERT INTO reviews (user_id, product_id, rating, description) 
+        VALUES (:user_id, :product_id, :rating, :description)"""
+
+        db.session.execute(sql,
+                           {"user_id": user_id, "product_id": product_id,
+                            "rating": rating, "description": description})
+        db.session.commit()
+        return True
+    except Exception as error:
+
+        print(f"Error: {error}")
+        db.session.rollback()
+        return False
+
+
 def increase_product_amount(name, amount):
 
     try:
