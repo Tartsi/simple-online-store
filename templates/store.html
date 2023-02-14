@@ -29,6 +29,7 @@
             <form action="/search" , method="POST">
                 <input type="text" , id="search_query" name="search" , placeholder="Product name">
                 <input type="submit" value="Search" onclick="return checkUserInput()">
+                <input type="submit" value="Reset" onclick="location.reload(true)">
                 <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
             </form>
         </div>
