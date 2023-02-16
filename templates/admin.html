@@ -25,6 +25,7 @@
         <input type="text" id="description" name="product_description" placeholder="Product Description">
         <input type="text" id="price" name="product_price" placeholder="Product Price">
         <input type="number" id="add_product_amount" name="add_product_amount" placeholder="Product Amount">
+        <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
         <button type="submit" , onclick="return checkAddNewProduct()">Add Product</button>
     </form>
 
@@ -32,6 +33,7 @@
     <form action="/increase_product_amount" method="POST">
         <input type="text" id="increase_name" name="increase_product_name" placeholder="Product Name">
         <input type="number" id="increase_amount" name="increase_amount" placeholder="Amount to Increase">
+        <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
         <button type="submit" , onclick="return checkIncreaseStock()">Increase Stock</button>
     </form>
 
