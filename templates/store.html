@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="/static/store.css">
-    <title>Document</title>
+    <title>Main Store</title>
 </head>
 
 <body>
@@ -50,12 +50,15 @@
             {% for product in products %}
 
             <div class="product-item">
+                {% if session.admin_status == 1 %}
+                <a href="#" onclick="confirmDelete('{{ product.id }}')">Delete</a>
+                {% endif %}
                 <h3>Item name: {{ product.name }}</h3>
                 <p>Description: {{ product.description }}</p>
-                <p>Item price: {{ product.price }}</p>
+                <p>Item price: {{ product.price }} €</p>
                 <p>Current stock: {{ product.amount }}</p>
                 {% if product.rating == None %}
-                <p>No ratings yet</p>
+                <p>No ratings yet!</p>
                 {% else %}
                 <p>Rating: {{ product.rating }}</p>
                 {% endif %}
@@ -69,24 +72,7 @@
 
         {% endif %}
 
-        <script>
-            function checkUserInput() {
-
-                let searchQuery = document.getElementById("search_query").value;
-                let maliciousCharacters = [">", "<", ">=", "<=", "/", "'", "&", "%", ";", "--", "/*", "*/", "<script>",
-                    "javascript:"
-                ]
-
-                for (let i = 0; i < maliciousCharacters.length; i++) {
-                    if (searchQuery.indexOf(maliciousCharacters[i]) !== -1) {
-                        alert("Malicious characters found. Please enter a valid input!");
-                        return false;
-                    }
-                }
-
-                return true;
-            }
-        </script>
+        <script src="/static/store.js"></script>
 </body>
 
 </html>

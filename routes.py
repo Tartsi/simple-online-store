@@ -182,6 +182,22 @@ def show_reviews(product_id):
     return render_template("show_reviews.html", reviews=reviews, product_name=product_name, product_average_rating=product_average_rating)
 
 
+@app.route("/delete_product/<int:product_id>", methods=["GET"])
+def delete_product(product_id):
+
+    if request.method == "GET":
+
+        if session.get("admin_status") != 1:
+            return render_template("index.html", admin_message=True)
+
+    result = db_manager.delete_product(product_id)
+
+    if not result:
+        return redirect("/logout")
+
+    return redirect("/store")
+
+
 @ app.route("/testdatabase")
 def test_database():
 

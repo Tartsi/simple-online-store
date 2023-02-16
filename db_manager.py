@@ -78,6 +78,22 @@ def increase_product_amount(name, amount):
         return False
 
 
+def delete_product(id):
+
+    try:
+
+        sql = "DELETE FROM products WHERE id=:id"
+
+        db.session.execute(sql, {"id": id})
+        db.session.commit()
+        return True
+    except Exception as error:
+
+        print(f"Error: {error}")
+        db.session.rollback()
+        return False
+
+
 with app.app_context():
     # For testing purposes only
     pass
