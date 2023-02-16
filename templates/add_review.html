@@ -26,26 +26,24 @@
         </select>
         <br><br>
         <label for="description">Review:</label>
-        <textarea id="description" name="description" rows="4" cols="50"></textarea>
+        <textarea id="description" name="description" rows="4" cols="50"
+            placeholder="Maximum review is 100 characters."></textarea>
         <br><br>
         <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
-        <input type="submit" value="Submit">
+        <input type="submit" value="Submit" onclick="return checkReview()">
     </form>
+
+    <script src="/static/add_review.js"></script>
 
     {% if success %}
     <script>
-        function addReviewSuccess() {
-            alert("Review added successfully!");
-        }
         addReviewSuccess();
     </script>
     {% endif %}
 
     {% if failure %}
     <script>
-        function addReviewFailure() {
-            alert("Failed to add review!");
-        }
+        addReviewFailure();
     </script>
     {% endif %}
 
