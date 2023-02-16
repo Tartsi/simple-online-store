@@ -64,6 +64,23 @@
 
         {% endif %}
 
+        {% if success %}
+        <script>
+            function addReviewSuccess() {
+                alert("Review added successfully!");
+            }
+            addReviewSuccess();
+        </script>
+        {% endif %}
+
+        {% if failure %}
+        <script>
+            function addReviewFailure() {
+                alert("Failed to add review!");
+            }
+        </script>
+        {% endif %}
+
         <script>
             function checkUserInput() {
 
