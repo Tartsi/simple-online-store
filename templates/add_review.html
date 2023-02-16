@@ -5,13 +5,17 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="/static/admin.css">
+    <link rel="stylesheet" type="text/css" href="/static/add_review.css">
     <title>Add review</title>
 </head>
 
 <body>
-    <h1>Add Review for Product {{ product_id }}</h1>
-    <form action="/add_review/{{ product_id }}" method="post">
+    <a href="/store">
+        <h2>Go back!</h2>
+    </a>
+
+    <h1>Add Review for Product</h1>
+    <form action="/add_review/{{ product_id }}" method="POST">
         <label for="rating">Rating:</label>
         <select id="rating" name="rating">
             <option value="1">1</option>
@@ -27,6 +31,24 @@
         <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
         <input type="submit" value="Submit">
     </form>
+
+    {% if success %}
+    <script>
+        function addReviewSuccess() {
+            alert("Review added successfully!");
+        }
+        addReviewSuccess();
+    </script>
+    {% endif %}
+
+    {% if failure %}
+    <script>
+        function addReviewFailure() {
+            alert("Failed to add review!");
+        }
+    </script>
+    {% endif %}
+
 </body>
 
 </html>

@@ -93,12 +93,26 @@ def search():
 @app.route("/add_review/<int:product_id>", methods=["GET", "POST"])
 def add_review(product_id):
 
-    if "user_id" not in session:
-        return redirect("/login")
+    if request.method == "GET":
 
-    user_id = session["user_id"]
+        if "username" not in session:
+            return render_template("index.html", login_message=True)
 
-    return render_template("add_review.html")
+        return render_template("add_review.html", product_id=product_id)
+
+    if request.method == "POST":
+
+        user_id = session["user_id"]
+        rating = request.form["rating"]
+        description = request.form["description"]
+
+        result = db_manager.add_new_review(
+            user_id, product_id, rating, description)
+
+        if not result:
+            return render_template("add_review.html", product_id=product_id, failure=True)
+
+        return render_template("add_review.html", product_id=product_id, success=True)
 
 
 @ app.route("/admin", methods=["GET", "POST"])

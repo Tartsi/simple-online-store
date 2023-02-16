@@ -1,0 +1,38 @@
+body {
+  font-family: Arial, sans-serif;
+}
+
+h1 {
+  text-align: center;
+}
+
+form {
+  margin: 0 auto;
+  width: 50%;
+}
+
+select, textarea {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 20px;
+  box-sizing: border-box;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  resize: vertical;
+  vertical-align: top;
+}
+
+input[type=submit] {
+  background-color: lightblue;
+  color: white;
+  padding: 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  display: block;
+  margin: 0 auto;
+}
+
+input[type=submit]:hover {
+  background-color: lightskyblue;
+}
