@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/static/show_reviews.css">
+    <title>Product reviews</title>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Product Reviews</h1>
+        <h2>Product name</h2>
+        <p>Rating: Product Average Rating</p>
+        <hr>
+        <div class="reviews">
+            {% if reviews == None %}
+            <p>No reviews yet.</p>
+            {% else %}
+            {% for review in reviews %}
+            <div class="review">
+                <p class="rating">{{ review.rating }}/5</p>
+                <p class="description">"{{ review.description }}"</p>
+                <p class="date_added">{{ review.date_created }}</p>
+            </div>
+            {% endfor %}
+            {% endif %}
+        </div>
+        <a href="/store">Back to store</a>
+    </div>
+</body>
+
+</html>

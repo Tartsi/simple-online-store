@@ -54,8 +54,13 @@
                 <p>Description: {{ product.description }}</p>
                 <p>Item price: {{ product.price }}</p>
                 <p>Current stock: {{ product.amount }}</p>
+                {% if product.rating == None %}
+                <p>No ratings yet</p>
+                {% else %}
                 <p>Rating: {{ product.rating }}</p>
-                <a href="/add_review/{{ product.id }}" id="add-review-link">Add review</a>
+                {% endif %}
+                <a href="/show_reviews/{{ product.id }}">Reviews</p>
+                    <a href="/add_review/{{ product.id }}" id="add-review-link">Add review</a>
             </div>
 
             {% endfor %}

@@ -162,6 +162,19 @@ def add_review(product_id):
         return render_template("add_review.html", product_id=product_id, success=True)
 
 
+@app.route("/show_reviews/<int:product_id>", methods=["GET"])
+def show_reviews(product_id):
+
+    if request.method == "GET":
+
+        if "username" not in session:
+            return render_template("index.html", login_message=True)
+
+    reviews = db_fetcher.get_reviews(product_id)
+
+    return render_template("show_reviews.html", reviews=reviews)
+
+
 @ app.route("/testdatabase")
 def test_database():
 
