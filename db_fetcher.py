@@ -65,7 +65,8 @@ def search_products(name):
 
 def get_reviews(product_id):
 
-    sql = "SELECT rating, description, to_char(date_created, 'DD-MM-YYYY') AS date_created FROM reviews WHERE product_id=:product_id"
+    sql = """SELECT rating, description, to_char(date_created, 'DD-MM-YYYY') AS date_created
+    FROM reviews WHERE product_id=:product_id"""
 
     query_result = db.session.execute(
         sql, {"product_id": product_id}).fetchall()

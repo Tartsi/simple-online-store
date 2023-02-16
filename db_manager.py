@@ -42,7 +42,7 @@ def add_new_product(name, description, price, amount):
 def add_new_review(user_id, product_id, rating, description):
 
     try:
-        sql = """INSERT INTO reviews (user_id, product_id, rating, description) 
+        sql = """INSERT INTO reviews (user_id, product_id, rating, description)
         VALUES (:user_id, :product_id, :rating, :description)"""
 
         db.session.execute(sql,
