@@ -172,7 +172,14 @@ def show_reviews(product_id):
 
     reviews = db_fetcher.get_reviews(product_id)
 
-    return render_template("show_reviews.html", reviews=reviews)
+    if reviews is not None:
+        product_name = reviews[0][4]
+        product_average_rating = reviews[0][5]
+    else:
+        product_name = None
+        product_average_rating = None
+
+    return render_template("show_reviews.html", reviews=reviews, product_name=product_name, product_average_rating=product_average_rating)
 
 
 @ app.route("/testdatabase")

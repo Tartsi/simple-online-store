@@ -65,8 +65,13 @@ def search_products(name):
 
 def get_reviews(product_id):
 
-    sql = """SELECT rating, description, to_char(date_created, 'DD-MM-YYYY') AS date_created
-    FROM reviews WHERE product_id=:product_id"""
+    sql = """SELECT r.rating, r.description, to_char(r.date_created, 'DD-MM-YYYY') AS date_created,
+    u.username, p.name,
+    (SELECT ROUND(AVG(rating), 2) FROM reviews WHERE product_id = :product_id) AS avg_rating
+    FROM reviews r 
+    JOIN users u ON r.user_id = u.id
+    JOIN products p ON r.product_id = p.id
+    WHERE r.product_id = :product_id"""
 
     query_result = db.session.execute(
         sql, {"product_id": product_id}).fetchall()

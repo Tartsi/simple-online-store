@@ -11,19 +11,20 @@
 
 <body>
     <div class="container">
-        <h1>Product Reviews</h1>
-        <h2>Product name</h2>
-        <p>Rating: Product Average Rating</p>
+        {% if reviews == None %}
+        <p>No reviews yet.</p>
+        {% else %}
+        <h1>Reviews:</h1>
+        <h2>{{ product_name }}</h2>
+        <p>Average rating: {{ product_average_rating }}/5</p>
         <hr>
         <div class="reviews">
-            {% if reviews == None %}
-            <p>No reviews yet.</p>
-            {% else %}
             {% for review in reviews %}
             <div class="review">
                 <p class="rating">{{ review.rating }}/5</p>
                 <p class="description">"{{ review.description }}"</p>
                 <p class="date_added">{{ review.date_created }}</p>
+                <p class="username">- {{ review.username }}</p>
             </div>
             {% endfor %}
             {% endif %}
