@@ -25,7 +25,14 @@ def login(username, password):
 
 def get_all_products():
 
-    sql = "SELECT id, name, description, price, amount FROM products WHERE amount > 0"
+    sql = """
+    SELECT p.id, p.name, p.description, p.price, p.amount, ROUND(AVG(r.rating), 1) as rating
+    FROM products p
+    LEFT JOIN reviews r ON p.id = r.product_id
+    WHERE p.amount > 0
+    GROUP BY p.id
+    ORDER BY p.id
+    """
 
     query_result = db.session.execute(sql).fetchall()
 
@@ -37,8 +44,16 @@ def get_all_products():
 
 def search_products(name):
 
-    sql = """SELECT id, name, description, price, amount
-    FROM products WHERE amount > 0 AND name LIKE '%' || :name || '%'"""
+    name = name.title()
+
+    sql = """
+    SELECT p.id, p.name, p.description, p.price, p.amount, ROUND(AVG(r.rating), 1) as rating
+    FROM products p
+    LEFT JOIN reviews r on p.id = r.product_id
+    WHERE p.amount > 0 AND p.name LIKE '%' || :name || '%'
+    GROUP BY p.id
+    ORDER BY p.id
+    """
 
     query_result = db.session.execute(sql, {"name": name}).fetchall()
 
