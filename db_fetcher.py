@@ -82,6 +82,27 @@ def get_reviews(product_id):
     return query_result
 
 
+def check_review_adding(user_id, product_id) -> bool:
+    """Check if user has 
+    already added a review 
+    for a specific product
+    """
+
+    sql = """
+    SELECT EXISTS (
+        SELECT 1
+        FROM reviews
+        WHERE user_id = :user_id
+        AND product_id = :product_id
+    )
+    """
+
+    query_result = db.session.execute(
+        sql, {"user_id": user_id, "product_id": product_id})
+
+    return query_result.fetchone()[0]
+
+
 with app.app_context():
     # For testing purposes only
     pass

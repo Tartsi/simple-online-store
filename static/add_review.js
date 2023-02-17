@@ -6,6 +6,10 @@ function addReviewFailure() {
     alert("Failed to add review!");
 }
 
+function multipleReviews() {
+    alert("A user can only add one review per product!");
+}
+
 function checkReview() {
 
     const description = document.getElementById("description").value;

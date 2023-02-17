@@ -153,6 +153,9 @@ def add_review(product_id):
         rating = request.form["rating"]
         description = request.form["description"]
 
+        if db_fetcher.check_review_adding(user_id, product_id):
+            return render_template("add_review.html", product_id=product_id, multiple_review=True)
+
         result = db_manager.add_new_review(
             user_id, product_id, rating, description)
 
