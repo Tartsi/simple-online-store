@@ -24,7 +24,11 @@
                 <p class="rating">{{ review.rating }}/5</p>
                 <p class="description">"{{ review.description }}"</p>
                 <p class="date_added">{{ review.date_created }}</p>
+                {% if review.username %}
                 <p class="username">- {{ review.username }}</p>
+                {% else %}
+                <p class="username">- Deleted user</p>
+                {% endif %}
             </div>
             {% endfor %}
             {% endif %}
