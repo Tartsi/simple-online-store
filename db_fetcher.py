@@ -42,6 +42,20 @@ def get_all_products():
     return query_result
 
 
+def get_all_users():
+
+    sql = """
+    SELECT id, username FROM users;
+    """
+
+    query_result = db.session.execute(sql).fetchall()
+
+    if len(query_result) == 0:
+        return None
+
+    return query_result
+
+
 def search_products(name):
 
     name = name.title()
