@@ -37,6 +37,18 @@
         <button type="submit" , onclick="return checkIncreaseStock()">Increase Stock</button>
     </form>
 
+    <h2 style="text-align: center">Delete User</h2>
+    <form action="/delete_user" method="POST">
+        <label for="user">Select a user:</label>
+        <select id="user" name="username">
+            {% for user in users %}
+            <option value="{{ user.username }}">{{ user.username }}</option>
+            {% endfor %}
+        </select>
+        <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
+        <input type="submit" value="Submit">
+    </form>
+
     {% endif %}
 
     <script src="/static/admin.js"></script>
@@ -64,6 +76,19 @@
         showIncreaseSuccess();
     </script>
     {% endif %}
+
+    {% if user_delete_error %}
+    <script>
+        userDeleteError();
+    </script>
+    {% endif %}
+
+    {% if user_delete_success %}
+    <script>
+        userDeleteSuccess();
+    </script>
+    {% endif %}
+
 </body>
 
 </html>

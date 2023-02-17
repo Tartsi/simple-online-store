@@ -14,13 +14,13 @@ function checkAddNewProduct() {
     }
 
     if (!onlyLetters.test(name)) {
-        alert("Product name can contain only letters!")
+        alert("Product name can contain only letters!");
         document.getElementById("add_name").value = "";
         return false;
     }
 
     if (description.length < 5) {
-        alert("Product description must be atleast 5 characters long!")
+        alert("Product description must be atleast 5 characters long!");
         document.getElementById("description").value = "";
         return false;
     }
@@ -32,7 +32,7 @@ function checkAddNewProduct() {
     }
 
     if (!onlyNumbers.test(price)) {
-        alert("Price must contain only numbers!")
+        alert("Price must contain only numbers!");
         document.getElementById("price").value = "";
         return false;
     }
@@ -59,7 +59,7 @@ function checkIncreaseStock() {
     }
 
     if (!onlyLetters.test(name)) {
-        alert("Product name can contain only letters!")
+        alert("Product name can contain only letters!");
         document.getElementById("increase_name").value = "";
         return false;
     }
@@ -79,13 +79,21 @@ function showDuplicateError() {
 }
 
 function showAddSuccess() {
-    alert("Product has been successfully added!")
+    alert("Product has been successfully added!");
 }
 
 function showIncreaseError() {
-    alert("This product does not exist!")
+    alert("This product does not exist!");
 }
 
 function showIncreaseSuccess() {
-    alert("Product stock increased succesfully!")
+    alert("Product stock increased succesfully!");
+}
+
+function userDeleteError() {
+    alert("Failed to delete user!");
+}
+
+function userDeleteSuccess() {
+    alert("User deleted successfully!");
 }

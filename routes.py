@@ -97,7 +97,13 @@ def admin():
         if session.get("admin_status") != 1:
             return render_template("index.html", admin_message=True)
 
-    return render_template("admin.html")
+    users = db_fetcher.get_all_users()
+
+    if users is None:
+        # return this because no admin status user exists
+        return render_template("index.html", admin_message=True)
+
+    return render_template("admin.html", users=users)
 
 
 @ app.route("/add_product", methods=["POST"])
@@ -176,8 +182,8 @@ def show_reviews(product_id):
     reviews = db_fetcher.get_reviews(product_id)
 
     if reviews is not None:
-        product_name = reviews[0][4]
-        product_average_rating = reviews[0][5]
+        product_name = reviews[0][5]
+        product_average_rating = reviews[0][6]
     else:
         product_name = None
         product_average_rating = None
@@ -199,6 +205,25 @@ def delete_product(product_id):
         return redirect("/logout")
 
     return redirect("/store")
+
+
+@app.route("/delete_user", methods=["GET", "POST"])
+def delete_user():
+
+    if request.method == "GET":
+
+        if session.get("admin_status") != 1:
+            return render_template("index.html", admin_message=True)
+
+    if request.method == "POST":
+
+        username = request.form["username"]
+        result = db_manager.delete_user(username)
+
+        if not result:
+            return render_template("admin.html", user_delete_error=True)
+
+        return render_template("admin.html", user_delete_success=True)
 
 
 @ app.route("/testdatabase")

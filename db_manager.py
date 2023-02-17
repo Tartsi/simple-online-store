@@ -94,6 +94,22 @@ def delete_product(id):
         return False
 
 
+def delete_user(username):
+
+    try:
+
+        sql = "DELETE FROM users WHERE username=:username"
+
+        db.session.execute(sql, {"username": username})
+        db.session.commit()
+        return True
+    except Exception as error:
+
+        print(f"Error: {error}")
+        db.session.rollback()
+        return False
+
+
 with app.app_context():
     # For testing purposes only
     pass
