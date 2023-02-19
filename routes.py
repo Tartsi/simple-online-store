@@ -38,7 +38,7 @@ def register():
         password = request.form["password"]
         admin = request.form.get("admin") == "on"
 
-        if admin:
+        if admin:  # if admin checkbox is checked
 
             admin_password = request.form["admin_password"]
 
@@ -149,11 +149,16 @@ def add_product():
         result = db_manager.add_new_product(
             product_name, product_description, product_price, product_amount
         )
+        users = db_fetcher.get_all_users()
+
+        if users is None:
+            # return this because no admin status user exists
+            return render_template("index.html", admin_message=True)
 
         if result is False:
-            return render_template("admin.html", duplicate_error=True)
+            return render_template("admin.html", duplicate_error=True, users=users)
 
-        return render_template("admin.html", add_success=True)
+        return render_template("admin.html", add_success=True, users=users)
 
 
 @ app.route("/increase_product_amount", methods=["POST"])
@@ -166,11 +171,16 @@ def increase_product_amount():
 
         result = db_manager.increase_product_amount(
             product_name, product_amount)
+        users = db_fetcher.get_all_users()
+
+        if users is None:
+            # return this because no admin status user exists
+            return render_template("index.html", admin_message=True)
 
         if result is False:
-            return render_template("admin.html", increase_error=True)
+            return render_template("admin.html", increase_error=True, users=users)
 
-        return render_template("admin.html", increase_success=True)
+        return render_template("admin.html", increase_success=True, users=users)
 
 
 @app.route("/add_review/<int:product_id>", methods=["GET", "POST"])
@@ -240,12 +250,6 @@ def delete_product(product_id):
 @app.route("/delete_user", methods=["GET", "POST"])
 def delete_user():
 
-    users = db_fetcher.get_all_users()
-
-    if users is None:
-
-        return render_template("index.html", user_message=True)
-
     if request.method == "GET":
 
         if session.get("admin_status") != 1:
@@ -259,6 +263,10 @@ def delete_user():
             return render_template("admin.html", delete_session_user=True, users=users)
 
         result = db_manager.delete_user(username)
+        users = db_fetcher.get_all_users()
+
+        if users is None:
+            return render_template("index.html", user_message=True)
 
         if not result:
             return render_template("admin.html", user_delete_error=True, users=users)
