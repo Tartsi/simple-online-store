@@ -210,6 +210,12 @@ def delete_product(product_id):
 @app.route("/delete_user", methods=["GET", "POST"])
 def delete_user():
 
+    users = db_fetcher.get_all_users()
+
+    if users is None:
+
+        return render_template("index.html", user_message=True)
+
     if request.method == "GET":
 
         if session.get("admin_status") != 1:
@@ -218,12 +224,16 @@ def delete_user():
     if request.method == "POST":
 
         username = request.form["username"]
+
+        if username == session["username"]:
+            return render_template("admin.html", delete_session_user=True, users=users)
+
         result = db_manager.delete_user(username)
 
         if not result:
-            return render_template("admin.html", user_delete_error=True)
+            return render_template("admin.html", user_delete_error=True, users=users)
 
-        return render_template("admin.html", user_delete_success=True)
+        return render_template("admin.html", user_delete_success=True, users=users)
 
 
 @ app.route("/testdatabase")

@@ -97,3 +97,7 @@ function userDeleteError() {
 function userDeleteSuccess() {
     alert("User deleted successfully!");
 }
+
+function deleteSessionUser() {
+    alert("Cannot delete your own user!");
+}
