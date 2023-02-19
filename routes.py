@@ -250,6 +250,8 @@ def delete_product(product_id):
 @app.route("/delete_user", methods=["GET", "POST"])
 def delete_user():
 
+    users = db_fetcher.get_all_users()
+
     if request.method == "GET":
 
         if session.get("admin_status") != 1:
