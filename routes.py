@@ -233,7 +233,7 @@ def delete_user():
         if not result:
             return render_template("admin.html", user_delete_error=True, users=users)
 
-        return render_template("admin.html", user_delete_success=True, users=users)
+    return render_template("admin.html", user_delete_success=True, users=users)
 
 
 @ app.route("/testdatabase")

@@ -26,6 +26,9 @@ def add_new_product(name, description, price, amount):
 
     try:
 
+        # adds consistency to items in database
+        name = name.title()
+
         sql = """INSERT INTO products (name, description, price, amount)
         VALUES (:name, :description, :price, :amount)"""
         db.session.execute(
@@ -60,6 +63,8 @@ def add_new_review(user_id, product_id, rating, description):
 def increase_product_amount(name, amount):
 
     try:
+
+        name = name.title()
 
         sql = "UPDATE products SET amount = amount + :amount WHERE name = :name"
 

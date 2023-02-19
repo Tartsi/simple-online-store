@@ -7,7 +7,7 @@ function addReviewFailure() {
 }
 
 function multipleReviews() {
-    alert("A user can only add one review per product!");
+    alert("An user can only add one review per product!");
 }
 
 function checkReview() {
