@@ -49,3 +49,17 @@ function checkUsernameAndPassword() {
 function showError() {
     alert("This username is already in use!");
 }
+
+function togglePassword() {
+    let passwordDiv = document.getElementById("password_div");
+    let adminCheckbox = document.getElementById("admin");
+    if (adminCheckbox.checked) {
+        passwordDiv.style.display = "block";
+    } else {
+        passwordDiv.style.display = "none";
+    }
+}
+
+function wrongAdminPassword() {
+    alert("Admin password is incorrect!");
+}

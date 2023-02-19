@@ -16,6 +16,10 @@ function showSuccess() {
     alert("User created successfully! You can now login!");
 }
 
+function showAdminSuccess() {
+    alert("Admin-status user created successfully! You can now login!");
+}
+
 function showError() {
     alert("Wrong username or password!");
 }

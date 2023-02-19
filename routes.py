@@ -5,6 +5,21 @@ import db_manager
 from app import app
 from db import db
 
+# Generic placeholder, modify this as you will, use it to check admin-registrations
+my_admin_password = "admin123"
+
+
+@ app.route("/testdatabase")
+def test_database():
+
+    # After setting up test your connection with this!
+    # Manually insert the /testdatabase - part!
+
+    if db.engine.execute("SELECT 1"):
+        return 'DB connection'
+
+    return 'ERROR'
+
 
 @app.route("/")
 def index():
@@ -21,13 +36,28 @@ def register():
 
         username = request.form["username"]
         password = request.form["password"]
+        admin = request.form.get("admin") == "on"
+
+        if admin:
+
+            admin_password = request.form["admin_password"]
+
+            if admin_password != my_admin_password:
+                return render_template("register.html", wrong_admin_password=True)
+
+            result = db_manager.add_user(username, password, 1)
+
+            if result is False:
+                return render_template("register.html", error=True)
+
+            return render_template("login.html", admin_success=True)
 
         result = db_manager.add_user(username, password, 0)
 
         if result is False:
             return render_template("register.html", error=True)
 
-        return render_template("login.html", success=True)
+    return render_template("login.html", success=True)
 
 
 @app.route("/login", methods=["GET", "POST"])
@@ -234,15 +264,6 @@ def delete_user():
             return render_template("admin.html", user_delete_error=True, users=users)
 
     return render_template("admin.html", user_delete_success=True, users=users)
-
-
-@ app.route("/testdatabase")
-def test_database():
-
-    if db.engine.execute("SELECT 1"):
-        return 'DB connection'
-
-    return 'ERROR'
 
 
 if __name__ == "__main__":

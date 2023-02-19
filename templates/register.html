@@ -26,11 +26,15 @@
         <br><br>
         <label for="conf_password">Confirm password:</label>
         <input type="password" id="confirm" name="confirm">
-
+        <br><br>
+        <label for="admin">Register as admin?</label>
+        <input type="checkbox" id="admin" name="admin" onchange="togglePassword()">
+        <div id="password_div" style="display: none;">
+            <label for="admin_password">Admin password:</label>
+            <input type="password" id="admin_password" name="admin_password">
+        </div>
         <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
-
-        <input type="submit" value="Register" , onclick="return checkUsernameAndPassword()">
-
+        <input type="submit" value="Register">
     </form>
 
     <script src="/static/register.js"></script>
@@ -38,6 +42,12 @@
     {% if error %}
     <script>
         showError();
+    </script>
+    {% endif %}
+
+    {% if wrong_admin_password %}
+    <script>
+        wrongAdminPassword();
     </script>
     {% endif %}
 
