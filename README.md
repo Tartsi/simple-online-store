@@ -22,6 +22,12 @@ Alustava tietokantataulurakenne:
 
 - Sovelluksen nykyinen tilanne (05.02.2023) tarjoaa mahdollisuuden rekisteröitymiseen, sisäänkirjautumiseen, tuotteiden selaamiseen ja etsimiseen ja ylläpitäjä-tason käyttäjille mahdollisuuden uusien tuotteiden lisäämiseen ja nykyisten tuotteiden varaston lisäämiseen.
 
+## Välipalautus 3
+
+- Pieni huomio tähän välipalautukseen on käden sormivamma joka esti minua edistämästä sovellusta haluamaani määrää.
+
+- Sovelluksen nykyinen tilanne (19.02.2023) tarjoaa mahdollisuuden tuotteiden arvioimiseen, arviointien selaamiseen, sekä admin-tason käyttäjille mahdollisuuden poistaa käyttäjiä ja tuotteita. Lopulliseen palautukseen jää ostoskorin ja maksutapahtuman toteuttaminen, sekä mahdolliset toiminnallisuudet joita ehdotetaan palautteessa. Muitakin parannuksia yleisellä tasolla.
+
 ### Ohjeet testaamiseen
 
 - Kloonaa kansio ja siirry juurikansioon, minkä jälkeen luo .env-tiedosto, johon määrität käyttämäsi paikallisen tietokannan ja salaisen avaimen:
@@ -37,15 +43,18 @@ SECRET_KEY = käyttämä salainen avaimesi
 pip install -r ./project-dependencies.txt
 ```
 
-- Luo sovelluksen tietokanta-skeema esimerkiksi kopioimalla tiedoston tables.sql-sisältö ja ajamalla se komentokehotteessa.
+- Luo sovelluksen tietokantataulut skeemaasi tables.sql-tiedostosta
+- HUOM! Tietokantaan on tullut muutoksia Välipalautus 2-vaiheesta. Uudelleenalustus on välttämätöntä.
 
-- Luo ylläpitäjä-tason käyttäjä manuaalisesti suoraan tietokantaan komennolla:
+- Luo ylläpitäjä-tason käyttäjä rekisteröitymis-sivulta hyödyntäen admin-salasanaa, joka löytyy routse.py-tiedoston alusta:
 
 ```
-INSERT INTO users (username, password, admin) VALUES ('admin', 'salasanasi', 1);
+my_admin_password = "admin123" (esim.)
 ```
 
-- Väliaikaisesti tämä on ainoa tapa lisätä ylläpitäjä-tason käyttäjä sovellukseen. Ylläpitäjä-tason käyttäjä tarvitaan tuotteiden lisäämiseen tietokantaan.
+![Admin](images/register-admin.png "Admin registration")
+
+- Ylläpitäjä-tason käyttäjä tarvitaan tuotteiden lisäämiseen tietokantaan.
 
 - Käynnistä sovellus ajamalla routes.py-tiedoston koodi.
 
