@@ -26,7 +26,7 @@ Alustava tietokantataulurakenne:
 
 - Pieni huomio tähän välipalautukseen on käden sormivamma joka esti minua edistämästä sovellusta haluamaani määrää.
 
-- Sovelluksen nykyinen tilanne (19.02.2023) tarjoaa mahdollisuuden tuotteiden arvioimiseen, arviointien selaamiseen, sekä admin-tason käyttäjille mahdollisuuden poistaa käyttäjiä ja tuotteita. Lopulliseen palautukseen jää ostoskorin ja maksutapahtuman toteuttaminen, sekä mahdolliset toiminnallisuudet joita ehdotetaan palautteessa. Muitakin parannuksia yleisellä tasolla.
+- Sovelluksen nykyinen tilanne (19.02.2023) tarjoaa mahdollisuuden tuotteiden arvioimiseen, arviointien selaamiseen, sekä admin-tason käyttäjille mahdollisuuden poistaa käyttäjiä ja tuotteita. Muitakin parannuksia yleisellä tasolla ks. commitit. Lopulliseen palautukseen jää ostoskorin ja maksutapahtuman toteuttaminen, sekä mahdolliset toiminnallisuudet joita ehdotetaan palautteessa.
 
 ### Ohjeet testaamiseen
 
@@ -46,10 +46,10 @@ pip install -r ./project-dependencies.txt
 - Luo sovelluksen tietokantataulut skeemaasi tables.sql-tiedostosta
 - HUOM! Tietokantaan on tullut muutoksia Välipalautus 2-vaiheesta. Uudelleenalustus on välttämätöntä.
 
-- Luo ylläpitäjä-tason käyttäjä rekisteröitymis-sivulta hyödyntäen admin-salasanaa, joka löytyy routse.py-tiedoston alusta:
+- Luo ylläpitäjä-tason käyttäjä rekisteröitymis-sivulta hyödyntäen admin-salasanaa, joka löytyy routes.py-tiedoston alusta:
 
 ```
-my_admin_password = "admin123" (esim.)
+my_admin_password = "admin123" (routes.py -- tiedoston alussa)
 ```
 
 ![Admin](images/register-admin.png "Admin registration")
