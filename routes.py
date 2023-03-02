@@ -79,6 +79,7 @@ def login():
         session["username"] = username
         session["user_id"] = result[0]
         session["admin_status"] = result[2]
+        session["cart"] = []
         session["csrf_token"] = os.urandom(16).hex()
         return redirect("/store")
 
@@ -100,6 +101,7 @@ def store():
 
     products = db_fetcher.get_all_products()
 
+    print(session["cart"])
     return render_template("store.html", products=products)
 
 
@@ -141,7 +143,6 @@ def add_to_cart(product_id):
 
     products = db_fetcher.get_all_products()
 
-    # session-list for shopping cart!
     product_quantity = int(request.form["add_cart_quantity"])
 
     if product_quantity > db_fetcher.get_product_amount(product_id):
@@ -151,6 +152,27 @@ def add_to_cart(product_id):
 
     if product_name is None:
         return render_template("store.html", products=products, no_product_found=True)
+
+    product_price = db_fetcher.get_product_price(product_id)
+    total_price = product_quantity * product_price
+
+    product = {"name": product_name,
+               "quantity": product_quantity, "total_price": total_price}
+
+    updated = False
+
+    for index, product_in_cart in enumerate(session["cart"]):
+        if product_in_cart["name"] == product_name:
+            session["cart"][index] = product
+            updated = True
+            break
+
+    if not updated:
+        session["cart"].append(product)
+
+    session.modified = True
+    print(session["cart"])
+    return render_template("store.html", products=products, add_cart_success=True)
 
 
 @app.route("/add_product", methods=["POST"])

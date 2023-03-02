@@ -22,9 +22,13 @@ function confirmDelete(productId) {
 }
 
 function outOfStock() {
-    alert("Error when adding to cart: Not enough stock available!")
+    alert("Error when updating cart: Not enough stock available!");
 }
 
 function noProductFound() {
-    alert("Error when adding to cart: Could not find product!")
+    alert("Error when updating cart: Could not find product!");
+}
+
+function addCartSuccess() {
+    alert("Updated cart successfully!");
 }
