@@ -15,8 +15,7 @@ CREATE TABLE IF NOT EXISTS shopping_cart (
     id SERIAL PRIMARY KEY,
     user_id INTEGER REFERENCES users ON DELETE
     SET NULL,
-        added_products JSONB NOT NULL DEFAULT '[]',
-        quantity INTEGER NOT NULL DEFAULT 0
+        added_products JSONB NOT NULL DEFAULT '[]'
 );
 CREATE TABLE IF NOT EXISTS completed_orders (
     id SERIAL PRIMARY KEY,
