@@ -70,6 +70,20 @@ def get_product_name(id):
     return query_result[0]
 
 
+def get_product_amount(id):
+
+    sql = """
+    SELECT amount FROM products WHERE id = :id
+    """
+
+    query_result = db.session.execute(sql, {"id": id}).fetchone()
+
+    if query_result is None:
+        return None
+
+    return query_result[0]
+
+
 def search_products(name):
 
     name = name.title()
