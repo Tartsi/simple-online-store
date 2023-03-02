@@ -120,7 +120,7 @@ def search():
         return render_template("store.html", products=products)
 
 
-@ app.route("/admin", methods=["GET", "POST"])
+@app.route("/admin", methods=["GET", "POST"])
 def admin():
 
     if request.method == "GET":
@@ -136,7 +136,24 @@ def admin():
     return render_template("admin.html", users=users)
 
 
-@ app.route("/add_product", methods=["POST"])
+@app.route("/add_to_cart/<int:product_id>", methods=["POST"])
+def add_to_cart(product_id):
+
+    products = db_fetcher.get_all_products()
+
+    # session-list for shopping cart!
+    product_quantity = int(request.form["add_cart_quantity"])
+
+    if product_quantity > db_fetcher.get_product_amount(product_id):
+        return render_template("store.html", products=products, out_of_stock=True)
+
+    product_name = db_fetcher.get_product_name(product_id)
+
+    if product_name is None:
+        return render_template("store.html", products=products, no_product_found=True)
+
+
+@app.route("/add_product", methods=["POST"])
 def add_product():
 
     if request.method == "POST":
@@ -161,7 +178,7 @@ def add_product():
         return render_template("admin.html", add_success=True, users=users)
 
 
-@ app.route("/increase_product_amount", methods=["POST"])
+@app.route("/increase_product_amount", methods=["POST"])
 def increase_product_amount():
 
     if request.method == "POST":

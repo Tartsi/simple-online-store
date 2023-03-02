@@ -64,6 +64,11 @@
                 {% endif %}
                 <a href="/show_reviews/{{ product.id }}">Reviews</p>
                     <a href="/add_review/{{ product.id }}" id="add-review-link">Add review</a>
+                    <form method="POST" action="/add_to_cart/{{ product.id }}">
+                        <label for="quantity">Quantity:</label>
+                        <input type="number" name="add_cart_quantity" min="1" max="{{product.amount}}" required>
+                        <input type="submit" value="Add to Cart">
+                    </form>
             </div>
 
             {% endfor %}
@@ -73,6 +78,18 @@
         {% endif %}
 
         <script src="/static/store.js"></script>
+
+        {% if out_of_stock %}
+        <script>
+            outOfStock();
+        </script>
+        {% endif %}
+
+        {% if no_product_found %}
+        <script>
+            noProductFound();
+        </script>
+        {% endif %}
 </body>
 
 </html>

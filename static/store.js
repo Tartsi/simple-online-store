@@ -20,3 +20,11 @@ function confirmDelete(productId) {
         window.location.href = "/delete_product/" + productId;
     }
 }
+
+function outOfStock() {
+    alert("Error when adding to cart: Not enough stock available!")
+}
+
+function noProductFound() {
+    alert("Error when adding to cart: Could not find product!")
+}
