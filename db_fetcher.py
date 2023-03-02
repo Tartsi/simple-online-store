@@ -36,7 +36,7 @@ def get_all_products():
 
     query_result = db.session.execute(sql).fetchall()
 
-    if len(query_result) == 0:
+    if query_result is None:
         return None
 
     return query_result
@@ -50,10 +50,24 @@ def get_all_users():
 
     query_result = db.session.execute(sql).fetchall()
 
-    if len(query_result) == 0:
+    if query_result is None:
         return None
 
     return query_result
+
+
+def get_product_name(id):
+
+    sql = """
+    SELECT name FROM products WHERE id = :id
+    """
+
+    query_result = db.session.execute(sql, {"id": id}).fetchone()
+
+    if query_result is None:
+        return None
+
+    return query_result[0]
 
 
 def search_products(name):
@@ -71,7 +85,7 @@ def search_products(name):
 
     query_result = db.session.execute(sql, {"name": name}).fetchall()
 
-    if len(query_result) == 0:
+    if query_result is None:
         return None
 
     return query_result
@@ -90,7 +104,7 @@ def get_reviews(product_id):
     query_result = db.session.execute(
         sql, {"product_id": product_id}).fetchall()
 
-    if len(query_result) == 0:
+    if query_result is None:
         return None
 
     return query_result
