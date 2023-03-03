@@ -69,3 +69,76 @@ input[type="submit"]:hover {
 #add-review-link {
     margin-left: 42em;
 }
+
+.cart {
+    border: 1px solid #ccc;
+    padding: 20px;
+    margin-bottom: 30px;
+    box-shadow: 2px 2px 8px #ccc;
+    max-width: 400px;
+  }
+  
+  .cart h2 {
+    font-size: 20px;
+    margin: 0;
+  }
+  
+  .cart p {
+    font-size: 16px;
+    margin: 0;
+  }
+  
+  .cart hr {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border: none;
+    border-top: 1px solid #ccc;
+  }
+  
+  .cart ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .cart li {
+    font-size: 16px;
+    margin-bottom: 10px;
+  }
+  
+  .cart a {
+    margin-left: 10px;
+    font-size: 14px;
+  }
+  
+  .cart a:hover {
+    text-decoration: underline;
+  }
+  
+  .cart button {
+    margin-top: 10px;
+    padding: 10px 20px;
+    background-color: lightblue;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+  
+  .cart button:hover {
+    background-color: lightskyblue;
+  }
+  
+  .cart input[type="number"] {
+    width: 50px;
+    margin-right: 10px;
+    padding: 5px;
+    font-size: 16px;
+    text-align: center;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+  }
+  
+  .cart form {
+    margin-top: 10px;
+  }

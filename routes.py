@@ -171,7 +171,7 @@ def add_to_cart(product_id):
         session["cart"].append(product)
 
     session.modified = True
-    print(session["cart"])
+
     return render_template("store.html", products=products, add_cart_success=True)
 
 

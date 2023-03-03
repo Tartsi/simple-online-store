@@ -15,13 +15,33 @@
     <div class="header">
         <p><i>You are logged in as user:</i> <strong>{{ session.username }}</strong></p>
         <strong><a href="/logout">Log out</a></strong>
+        {% if session.admin_status == 1 %}
+        <strong>
+            <p style="text-align: center"><a href="/admin">Admin-page</a></p>
+        </strong>
+        {% endif %}
+        <div class="cart">
+            <h2>Shopping Cart:</h2>
+            {% if session.cart|length == 0 %}
+            <h2>Empty</h2>
+            {% else %}
+            {% for item in session.cart %}
+            <hr>
+            <p>Product: {{ item.name }}</p>
+            <p>Selected amount: {{ item.quantity }}</p>
+            <p>Price: {{ item.total_price }} €</p>
+            <a href="">Remove from cart</a>
+            {% endfor %}
+            <hr>
+            <p>Total:</p>
+            €
+            <br>
+            <a href="">Checkout</a>
+            {% endif %}
+        </div>
     </div>
 
-    {% if session.admin_status == 1 %}
-    <strong>
-        <p style="text-align: center"><a href="/admin">Admin-page</a></p>
-    </strong>
-    {% endif %}
+
 
     <div class="container">
         <div class="search-form">
