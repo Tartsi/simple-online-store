@@ -322,6 +322,7 @@ def delete_product(product_id):
         for index, product_in_cart in enumerate(session["cart"]):
 
             if product_in_cart["name"] == product_name:
+                session["grand_total"] -= product_in_cart["total_price"]
                 del session["cart"][index]
 
         session.modified = True
