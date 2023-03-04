@@ -28,13 +28,13 @@
             {% for item in session.cart %}
             <hr>
             <p>Product: {{ item.name }}</p>
-            <p>Selected amount: {{ item.quantity }}</p>
+            <p>Amount: {{ item.quantity }}</p>
             <p>Price: {{ item.total_price }} €</p>
             <a href="">Remove from cart</a>
             {% endfor %}
             <hr>
             <p>Total:</p>
-            €
+            {{ session.grand_total }} €
             <br>
             <a href="">Checkout</a>
             {% endif %}

@@ -80,6 +80,7 @@ def login():
         session["user_id"] = result[0]
         session["admin_status"] = result[2]
         session["cart"] = []
+        session["grand_total"] = 0
         session["csrf_token"] = os.urandom(16).hex()
         return redirect("/store")
 
@@ -101,7 +102,6 @@ def store():
 
     products = db_fetcher.get_all_products()
 
-    print(session["cart"])
     return render_template("store.html", products=products)
 
 
@@ -157,7 +157,7 @@ def add_to_cart(product_id):
     total_price = product_quantity * product_price
 
     product = {"name": product_name,
-               "quantity": product_quantity, "total_price": total_price}
+               "quantity": int(product_quantity), "total_price": int(total_price)}
 
     updated = False
 
@@ -169,6 +169,14 @@ def add_to_cart(product_id):
 
     if not updated:
         session["cart"].append(product)
+
+    grand_total = 0
+
+    for cart_product in session["cart"]:
+
+        grand_total += cart_product["total_price"]
+
+    session["grand_total"] = grand_total
 
     session.modified = True
 
