@@ -1,3 +1,4 @@
+import json
 from db import db
 from werkzeug.security import generate_password_hash
 from app import app
@@ -51,6 +52,29 @@ def add_new_review(user_id, product_id, rating, description):
         db.session.execute(sql,
                            {"user_id": user_id, "product_id": product_id,
                             "rating": rating, "description": description})
+        db.session.commit()
+        return True
+    except Exception as error:
+
+        print(f"Error: {error}")
+        db.session.rollback()
+        return False
+
+
+def add_new_shopping_cart(user_id, added_products):
+
+    try:
+
+        added_products = json.dumps(added_products)
+
+        sql = """
+        INSERT INTO shopping_cart (user_id, added_products)
+        VALUES (%(user_id)s, %(added_products)s)
+        """
+
+        db.engine.execute(
+            sql, {"user_id": user_id, "added_products": added_products})
+
         db.session.commit()
         return True
     except Exception as error:
