@@ -119,6 +119,20 @@ def search_products(name):
     return query_result
 
 
+def get_shopping_cart_content(id):
+
+    sql = """
+    SELECT added_products FROM shopping_cart WHERE id = :id
+    """
+
+    query_result = db.session.execute(sql, {"id": id}).fetchone()
+
+    if len(query_result) == 0:
+        return None
+
+    return query_result[0]
+
+
 def get_reviews(product_id):
 
     sql = """SELECT r.id, r.rating, r.description, to_char(r.date_created, 'DD-MM-YYYY') AS date_created,
