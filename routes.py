@@ -292,10 +292,20 @@ def delete_product(product_id):
         if session.get("admin_status") != 1:
             return render_template("index.html", admin_message=True)
 
+    product_name = db_fetcher.get_product_name(product_id)
     result = db_manager.delete_product(product_id)
 
     if not result:
         return redirect("/logout")
+
+    if len(session["cart"]) > 0:
+
+        for index, product_in_cart in enumerate(session["cart"]):
+
+            if product_in_cart["name"] == product_name:
+                del session["cart"][index]
+
+        session.modified = True
 
     return redirect("/store")
 
