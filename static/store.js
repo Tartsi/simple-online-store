@@ -32,3 +32,7 @@ function noProductFound() {
 function addCartSuccess() {
     alert("Updated cart successfully!");
 }
+
+function purchaseSuccess() {
+    alert("Thank you for your purchase!");
+}

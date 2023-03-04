@@ -258,10 +258,29 @@ def add_review(product_id):
         return render_template("add_review.html", product_id=product_id, success=True)
 
 
-@app.route("/checkout", methods=["GET", "POST"])
+@app.route("/checkout", methods=["GET"])
 def checkout():
 
+    if request.method == "GET":
+
+        if "username" not in session:
+            return render_template("index.html", login_message=True)
+
     return render_template("checkout.html")
+
+
+@app.route("/purchase", methods=["POST"])
+def purchase():
+
+    if request.method == "POST":
+
+        if "username" not in session:
+            return render_template("index.html", login_message=True)
+
+    # todo
+
+    products = db_fetcher.get_all_products()
+    return render_template("store.html", products=products, purchase_success=True)
 
 
 @app.route("/show_reviews/<int:product_id>", methods=["GET"])

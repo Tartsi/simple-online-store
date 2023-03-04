@@ -107,6 +107,12 @@
         </script>
         {% endif %}
 
+        {% if purchase_success %}
+        <script>
+            purchaseSuccess();
+        </script>
+        {% endif %}
+
         {% if out_of_stock %}
         <script>
             outOfStock();
