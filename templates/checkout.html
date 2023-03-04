@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/static/checkout.css">
+    <title>Checkout</title>
+</head>
+
+<body>
+
+    <div class="header">
+        <p><i>You are logged in as user:</i> <strong>{{ session.username }}</strong></p>
+        <strong><a href="/logout">Log out</a></strong>
+        <br><br>
+        <strong><a href="/store">Back to store</a></strong>
+    </div>
+
+    <div class="cart">
+        <table>
+            <thead>
+                <tr>
+                    <th>Product</th>
+                    <th>Amount</th>
+                    <th>Price</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in session.cart %}
+                <tr>
+                    <td>{{ item.name }}</td>
+                    <td>{{ item.quantity }}</td>
+                    <td>{{ item.total_price }} €</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <div class="total">
+            <p>Sum: {{ session.grand_total }} €</p>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="checkout-form">
+            <h2>Purchase Information:</h2>
+            <form action="/purchase" , method="POST">
+                <label for="shipping_address">Shipping Address:</label>
+                <input type="text" , id="shipping_address" name="shipping_address" ,
+                    placeholder="Enter shipping address" required>
+                <br>
+                <br>
+                <label for="payment_method">Payment Method:</label>
+                <select id="payment_method" name="payment_method">
+                    <option value="credit_card">Credit Card</option>
+                    <option value="paypal">Paypal</option>
+                    <option value="cash">Cash</option>"
+                </select>
+                <br>
+                <br>
+                <input type="submit" value="Confirm Purchase"
+                    onclick="return confirm('Are you sure you want to go through with this purchase?') && checkAddress();">
+                <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function checkAddress() {
+
+            address = document.getElementById('shipping_address').value;
+            const allowedChars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789,.- ';
+
+            if (address.length < 5) {
+
+                alert("Address must be at least 5 characters!")
+                return false;
+
+            }
+
+            for (let i = 0; i < address.length; i++) {
+                if (allowedChars.indexOf(address[i]) === -1) {
+                    alert("Unwanted characters in address!")
+                    document.getElementById("shipping_address").value = "";
+                    return false;
+                }
+            }
+
+            return true;
+
+        }
+    </script>
+
+</body>
+
+</html>

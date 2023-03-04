@@ -258,6 +258,12 @@ def add_review(product_id):
         return render_template("add_review.html", product_id=product_id, success=True)
 
 
+@app.route("/checkout", methods=["GET", "POST"])
+def checkout():
+
+    return render_template("checkout.html")
+
+
 @app.route("/show_reviews/<int:product_id>", methods=["GET"])
 def show_reviews(product_id):
 
