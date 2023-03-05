@@ -2,6 +2,7 @@ import json
 from db import db
 from werkzeug.security import generate_password_hash
 from app import app
+from db_fetcher import get_product_amount
 
 """
 This module makes changes to the database
@@ -69,10 +70,10 @@ def add_new_shopping_cart(user_id, added_products):
 
         sql = """
         INSERT INTO shopping_cart (user_id, added_products)
-        VALUES (%(user_id)s, %(added_products)s)
+        VALUES (:user_id, :added_products)
         """
 
-        db.engine.execute(
+        db.session.execute(
             sql, {"user_id": user_id, "added_products": added_products})
 
         db.session.commit()
@@ -97,6 +98,30 @@ def increase_product_amount(name, amount):
 
         if query_result.rowcount == 0:
             return False
+
+        db.session.commit()
+        return True
+    except Exception as error:
+
+        print(f"Error: {error}")
+        db.session.rollback()
+        return False
+
+
+def decrease_product_amount(name, amount):
+
+    try:
+
+        sql = """
+        UPDATE products SET amount = amount - :amount WHERE name = :name
+        RETURNING id
+        """
+
+        result = db.session.execute(
+            sql, {"amount": amount, "name": name}).fetchone()[0]
+
+        if get_product_amount(result) <= 0:
+            delete_product(result)
 
         db.session.commit()
         return True
@@ -141,4 +166,5 @@ def delete_user(username):
 
 with app.app_context():
     # For testing purposes only
+
     pass
