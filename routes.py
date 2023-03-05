@@ -135,7 +135,26 @@ def admin():
         # return this because no admin status user exists
         return render_template("index.html", admin_message=True)
 
-    return render_template("admin.html", users=users)
+    completed_orders = db_fetcher.get_all_completed_orders()
+    order_information = []
+
+    for item in completed_orders:
+
+        user_order_name = item[0]
+        user_products = item[1]
+        order_date_created = item[2]
+        order_address = item[3]
+        order_grand_total = item[4]
+
+        order_dict = {"user_order_name": user_order_name,
+                      "user_products": user_products,
+                      "order_date_created": order_date_created,
+                      "order_address": order_address,
+                      "order_grand_total": order_grand_total}
+
+        order_information.append(order_dict)
+
+    return render_template("admin.html", users=users, order_infromation=order_information)
 
 
 @app.route("/add_to_cart/<int:product_id>", methods=["POST"])
@@ -197,15 +216,34 @@ def add_product():
             product_name, product_description, product_price, product_amount
         )
         users = db_fetcher.get_all_users()
+        completed_orders = db_fetcher.get_all_completed_orders()
+
+        order_information = []
+
+        for item in completed_orders:
+
+            user_order_name = item[0]
+            user_products = item[1]
+            order_date_created = item[2]
+            order_address = item[3]
+            order_grand_total = item[4]
+
+            order_dict = {"user_order_name": user_order_name,
+                          "user_products": user_products,
+                          "order_date_created": order_date_created,
+                          "order_address": order_address,
+                          "order_grand_total": order_grand_total}
+
+            order_information.append(order_dict)
 
         if users is None:
             # return this because no admin status user exists
             return render_template("index.html", admin_message=True)
 
         if result is False:
-            return render_template("admin.html", duplicate_error=True, users=users)
+            return render_template("admin.html", duplicate_error=True, users=users, order_information=order_information)
 
-        return render_template("admin.html", add_success=True, users=users)
+        return render_template("admin.html", add_success=True, users=users, order_information=order_information)
 
 
 @app.route("/increase_product_amount", methods=["POST"])
@@ -220,14 +258,32 @@ def increase_product_amount():
             product_name, product_amount)
         users = db_fetcher.get_all_users()
 
+        completed_orders = db_fetcher.get_all_completed_orders()
+        order_information = []
+
+        for item in completed_orders:
+            user_order_name = item[0]
+            user_products = item[1]
+            order_date_created = item[2]
+            order_address = item[3]
+            order_grand_total = item[4]
+
+            order_dict = {"user_order_name": user_order_name,
+                          "user_products": user_products,
+                          "order_date_created": order_date_created,
+                          "order_address": order_address,
+                          "order_grand_total": order_grand_total}
+
+            order_information.append(order_dict)
+
         if users is None:
             # return this because no admin status user exists
             return render_template("index.html", admin_message=True)
 
         if result is False:
-            return render_template("admin.html", increase_error=True, users=users)
+            return render_template("admin.html", increase_error=True, users=users, order_information=order_information)
 
-        return render_template("admin.html", increase_success=True, users=users)
+        return render_template("admin.html", increase_success=True, users=users, order_information=order_information)
 
 
 @app.route("/add_review/<int:product_id>", methods=["GET", "POST"])
@@ -349,6 +405,23 @@ def delete_product(product_id):
 def delete_user():
 
     users = db_fetcher.get_all_users()
+    completed_orders = db_fetcher.get_all_completed_orders()
+    order_information = []
+
+    for item in completed_orders:
+        user_order_name = item[0]
+        user_products = item[1]
+        order_date_created = item[2]
+        order_address = item[3]
+        order_grand_total = item[4]
+
+        order_dict = {"user_order_name": user_order_name,
+                      "user_products": user_products,
+                      "order_date_created": order_date_created,
+                      "order_address": order_address,
+                      "order_grand_total": order_grand_total}
+
+        order_information.append(order_dict)
 
     if request.method == "GET":
 
@@ -360,7 +433,7 @@ def delete_user():
         username = request.form["username"]
 
         if username == session["username"]:
-            return render_template("admin.html", delete_session_user=True, users=users)
+            return render_template("admin.html", delete_session_user=True, users=users, order_information=order_information)
 
         result = db_manager.delete_user(username)
         users = db_fetcher.get_all_users()
@@ -369,9 +442,9 @@ def delete_user():
             return render_template("index.html", user_message=True)
 
         if not result:
-            return render_template("admin.html", user_delete_error=True, users=users)
+            return render_template("admin.html", user_delete_error=True, users=users, order_information=order_information)
 
-    return render_template("admin.html", user_delete_success=True, users=users)
+    return render_template("admin.html", user_delete_success=True, users=users, order_information=order_information)
 
 
 if __name__ == "__main__":

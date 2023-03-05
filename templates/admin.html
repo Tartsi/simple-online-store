@@ -49,6 +49,27 @@
         <input type="submit" value="Delete">
     </form>
 
+    <div class="container">
+        <h2>Completed Orders</h2>
+        <hr>
+        {% for order in order_infromation %}
+        {% if order.user_order_name == None %}
+        <p><strong>User:</strong> Deleted user</p>
+        {% else %}
+        <p><strong>User:</strong> {{ order.user_order_name }}</p>
+        {% endif %}
+        <p><strong>Shipping Address:</strong> {{ order.order_address }}</p>
+        <p><strong>Date:</strong> {{ order.order_date_created }}</p>
+        <p><strong>Products:</strong></p>
+        <ul>
+            {% for product in order.user_products %}
+            <li>{{ product.name }} - {{ product.quantity }} totaling {{ product.total_price }} €</li>
+            {% endfor %}
+        </ul>
+        <p><strong>Total:</strong> {{ order.order_grand_total }} €</p>
+        <hr>
+        {% endfor %}
+    </div>
     {% endif %}
 
     <script src="/static/admin.js"></script>

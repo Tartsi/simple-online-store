@@ -67,3 +67,45 @@
   input[type="submit"]:hover {
     background-color: black;
   }
+  
+  .container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  h2 {
+    font-size: 2em;
+    margin-bottom: 30px;
+  }
+  
+  hr {
+    border: 0;
+    border-top: 1px solid #ddd;
+    margin-top: 30px;
+  }
+  
+  p {
+    font-size: 1.2em;
+    line-height: 1.4em;
+    margin-bottom: 10px;
+  }
+  
+  ul {
+    margin-top: 10px;
+    margin-bottom: 20px;
+  }
+  
+  li {
+    font-size: 1.1em;
+    line-height: 1.4em;
+    margin-bottom: 10px;
+  }
+  
+  strong {
+    font-weight: bold;
+  }
+  
+  .container p:last-child {
+    margin-bottom: 0;
+  }

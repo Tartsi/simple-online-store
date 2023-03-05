@@ -133,6 +133,29 @@ def get_shopping_cart_content(id):
     return query_result[0]
 
 
+def get_all_completed_orders():
+
+    sql = """
+    SELECT
+        users.username as username,
+        shopping_cart.added_products,
+        to_char(completed_orders.date_created, 'DD-MM-YY') as date_created,
+        completed_orders.address as shipping_address,
+        completed_orders.total_price as total_price
+    FROM
+        completed_orders
+        LEFT JOIN users ON completed_orders.user_id = users.id
+        JOIN shopping_cart ON completed_orders.cart_id = shopping_cart.id;
+    """
+
+    query_result = db.session.execute(sql).fetchall()
+
+    if len(query_result) == 0:
+        return None
+
+    return query_result
+
+
 def get_reviews(product_id):
 
     sql = """SELECT r.id, r.rating, r.description, to_char(r.date_created, 'DD-MM-YYYY') AS date_created,
