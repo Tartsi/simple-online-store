@@ -279,8 +279,11 @@ def purchase():
 
         user_id = session["user_id"]
         cart_content = session["cart"]
+        address = request.form["shipping_address"]
 
-        db_manager.add_new_shopping_cart(user_id, cart_content)
+        cart_id = db_manager.add_new_shopping_cart(user_id, cart_content)
+        db_manager.add_new_completed_order(
+            user_id, cart_id, address, session["grand_total"])
 
         for cart_product in cart_content:
 
