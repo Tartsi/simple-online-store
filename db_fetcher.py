@@ -158,7 +158,8 @@ def get_all_completed_orders():
 
 def get_reviews(product_id):
 
-    sql = """SELECT r.id, r.rating, r.description, to_char(r.date_created, 'DD-MM-YYYY') AS date_created,
+    sql = """SELECT r.id, r.rating, r.description,
+    to_char(r.date_created, 'DD-MM-YYYY') AS date_created,
     u.username, p.name,
     (SELECT ROUND(AVG(rating), 2) FROM reviews WHERE product_id = :product_id) AS avg_rating
     FROM reviews r 
@@ -176,8 +177,8 @@ def get_reviews(product_id):
 
 
 def check_review_adding(user_id, product_id) -> bool:
-    """Check if user has 
-    already added a review 
+    """Check if user has
+    already added a review
     for a specific product
     """
 

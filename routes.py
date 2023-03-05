@@ -257,9 +257,15 @@ def add_product():
             return render_template("index.html", admin_message=True)
 
         if result is False:
-            return render_template("admin.html", duplicate_error=True, users=users, order_information=order_information)
+            return render_template("admin.html",
+                                   duplicate_error=True,
+                                   users=users,
+                                   order_information=order_information)
 
-    return render_template("admin.html", add_success=True, users=users, order_information=order_information)
+    return render_template("admin.html",
+                           add_success=True,
+                           users=users,
+                           order_information=order_information)
 
 
 @app.route("/increase_product_amount", methods=["POST"])
@@ -297,9 +303,13 @@ def increase_product_amount():
             return render_template("index.html", admin_message=True)
 
         if result is False:
-            return render_template("admin.html", increase_error=True, users=users, order_information=order_information)
+            return render_template("admin.html", increase_error=True,
+                                   users=users, order_information=order_information)
 
-        return render_template("admin.html", increase_success=True, users=users, order_information=order_information)
+        return render_template("admin.html",
+                               increase_success=True,
+                               users=users,
+                               order_information=order_information)
 
 
 @app.route("/add_review/<int:product_id>", methods=["GET", "POST"])
@@ -387,7 +397,8 @@ def show_reviews(product_id):
         product_name = None
         product_average_rating = None
 
-    return render_template("show_reviews.html", reviews=reviews, product_name=product_name, product_average_rating=product_average_rating)
+    return render_template("show_reviews.html", reviews=reviews, product_name=product_name,
+                           product_average_rating=product_average_rating)
 
 
 @app.route("/delete_product/<int:product_id>", methods=["GET"])
@@ -450,7 +461,8 @@ def delete_user():
         username = request.form["username"]
 
         if username == session["username"]:
-            return render_template("admin.html", delete_session_user=True, users=users, order_information=order_information)
+            return render_template("admin.html", delete_session_user=True,
+                                   users=users, order_information=order_information)
 
         result = db_manager.delete_user(username)
         users = db_fetcher.get_all_users()
@@ -459,9 +471,11 @@ def delete_user():
             return render_template("index.html", user_message=True)
 
         if not result:
-            return render_template("admin.html", user_delete_error=True, users=users, order_information=order_information)
+            return render_template("admin.html", user_delete_error=True,
+                                   users=users, order_information=order_information)
 
-    return render_template("admin.html", user_delete_success=True, users=users, order_information=order_information)
+    return render_template("admin.html", user_delete_success=True,
+                           users=users, order_information=order_information)
 
 
 if __name__ == "__main__":
