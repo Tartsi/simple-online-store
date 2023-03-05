@@ -28,6 +28,23 @@ Alustava tietokantataulurakenne:
 
 - Sovelluksen nykyinen tilanne (19.02.2023) tarjoaa mahdollisuuden tuotteiden arvioimiseen, arviointien selaamiseen, sekä admin-tason käyttäjille mahdollisuuden poistaa käyttäjiä ja tuotteita. Muitakin parannuksia yleisellä tasolla ks. commitit. Lopulliseen palautukseen jää ostoskorin ja maksutapahtuman toteuttaminen, sekä mahdolliset toiminnallisuudet joita ehdotetaan palautteessa.
 
+## Lopullinen palautus
+
+- Sovelluksen lopullinen tilanne (05.03.2023) tarjoaa alustaviin kaavailtuihin ominaisuuksiin suhteutettuna kiitettävästi toiminnallisuuksia.
+
+- Tavallinen käyttäjä voi rekisteröityä, kirjautua, selata nettikaupan tuotteita, arvostella tuotteita ja tutkia muita arvosteluita, lisätä tuotteita ostoskoriin ja lopulta käydä läpi hyvin nopean, yksinkertaistetun ja suoraviivaisen maksutapahtuman.
+
+- Ylläpito-tason käyttäjällä on samat ominaisuudet kuin tavallisella käyttäjällä, mutta ylläpitäjä voi lisäksi selata kaupan ostoshistoriaa, lisätä tuotteita kauppaan, lisätä tuotteiden varastoa ja poistaa käyttäjiä ja tuotteita.
+
+### Toteuttamatta jääneet toiminallisuudet:
+
+- Tekomaksutapahtuma on hyvin yksinkertaistettu ja tyhjä/tylsä. Myöskään yksittäinen käyttäjä ei voi selata omaa henkilökohtaista ostoshistoriaansa. Ylläpitäjä ei myöskään voi suoraan muunnella tuotteiden informaatiota, varastoa lukuunottamatta, vaan joutuu poistamaan ja lisäämään tuotteen uudelleen, mikäli tarve nimi/kuvaus muutoksille tulisi.
+
+### Tiedettyjä bugeja:
+
+- Store-välilehden Reset-nappi ei toimi oikein jos kaupassa ei ole tuotteita.
+- Lisää bugeja saattaa esiintyä muilla järjestelmillä.
+
 ### Ohjeet testaamiseen
 
 - Kloonaa kansio ja siirry juurikansioon, minkä jälkeen luo .env-tiedosto, johon määrität käyttämäsi paikallisen tietokannan ja salaisen avaimen:
