@@ -277,10 +277,22 @@ def purchase():
         if "username" not in session:
             return render_template("index.html", login_message=True)
 
-    # todo
+        user_id = session["user_id"]
+        cart_content = session["cart"]
 
-    products = db_fetcher.get_all_products()
-    return render_template("store.html", products=products, purchase_success=True)
+        db_manager.add_new_shopping_cart(user_id, cart_content)
+
+        for cart_product in cart_content:
+
+            name = cart_product["name"]
+            quantity = cart_product["quantity"]
+            db_manager.decrease_product_amount(name, quantity)
+
+        session["cart"] = []
+        session.modified = True
+
+        products = db_fetcher.get_all_products()
+        return render_template("store.html", products=products, purchase_success=True)
 
 
 @app.route("/show_reviews/<int:product_id>", methods=["GET"])
