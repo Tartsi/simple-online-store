@@ -154,7 +154,7 @@ def admin():
 
         order_information.append(order_dict)
 
-    return render_template("admin.html", users=users, order_infromation=order_information)
+    return render_template("admin.html", users=users, order_information=order_information)
 
 
 @app.route("/add_to_cart/<int:product_id>", methods=["POST"])
@@ -243,7 +243,7 @@ def add_product():
         if result is False:
             return render_template("admin.html", duplicate_error=True, users=users, order_information=order_information)
 
-        return render_template("admin.html", add_success=True, users=users, order_information=order_information)
+    return render_template("admin.html", add_success=True, users=users, order_information=order_information)
 
 
 @app.route("/increase_product_amount", methods=["POST"])
@@ -257,8 +257,8 @@ def increase_product_amount():
         result = db_manager.increase_product_amount(
             product_name, product_amount)
         users = db_fetcher.get_all_users()
-
         completed_orders = db_fetcher.get_all_completed_orders()
+
         order_information = []
 
         for item in completed_orders:
@@ -406,6 +406,7 @@ def delete_user():
 
     users = db_fetcher.get_all_users()
     completed_orders = db_fetcher.get_all_completed_orders()
+
     order_information = []
 
     for item in completed_orders:
