@@ -71,11 +71,32 @@ def add_new_shopping_cart(user_id, added_products):
         sql = """
         INSERT INTO shopping_cart (user_id, added_products)
         VALUES (:user_id, :added_products)
+        RETURNING id
         """
 
-        db.session.execute(
-            sql, {"user_id": user_id, "added_products": added_products})
+        result = db.session.execute(
+            sql, {"user_id": user_id, "added_products": added_products}).fetchone()[0]
 
+        db.session.commit()
+        return result
+    except Exception as error:
+
+        print(f"Error: {error}")
+        db.session.rollback()
+        return False
+
+
+def add_new_completed_order(user_id, cart_id, address, total_price):
+
+    try:
+
+        sql = """
+        INSERT INTO completed_orders (user_id, cart_id, address, total_price)
+        VALUES (:user_id, :cart_id, :address, :total_price)
+        """
+
+        db.session.execute(sql, {"user_id": user_id, "cart_id": cart_id,
+                           "address": address, "total_price": total_price})
         db.session.commit()
         return True
     except Exception as error:
@@ -166,5 +187,4 @@ def delete_user(username):
 
 with app.app_context():
     # For testing purposes only
-
     pass
