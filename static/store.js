@@ -26,7 +26,7 @@ function outOfStock() {
 }
 
 function noProductFound() {
-    alert("Error when updating cart: Could not find product!");
+    alert("Could not find searched product!");
 }
 
 function addCartSuccess() {

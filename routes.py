@@ -9,10 +9,10 @@ from db import db
 my_admin_password = "admin123"
 
 
-@ app.route("/testdatabase")
+@app.route("/testdatabase")
 def test_database():
 
-    # After setting up test your connection with this!
+    # After setting database up, test your connection with this!
     # Manually insert the /testdatabase - part!
 
     if db.engine.execute("SELECT 1"):
