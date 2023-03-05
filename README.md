@@ -34,16 +34,18 @@ Alustava tietokantataulurakenne:
 
 - Tavallinen käyttäjä voi rekisteröityä, kirjautua, selata nettikaupan tuotteita, arvostella tuotteita ja tutkia muita arvosteluita, lisätä tuotteita ostoskoriin ja lopulta käydä läpi hyvin nopean, yksinkertaistetun ja suoraviivaisen maksutapahtuman.
 
-- Ylläpito-tason käyttäjällä on samat ominaisuudet kuin tavallisella käyttäjällä, mutta ylläpitäjä voi lisäksi selata kaupan ostoshistoriaa, lisätä tuotteita kauppaan, lisätä tuotteiden varastoa ja poistaa käyttäjiä ja tuotteita.
+- Ylläpito-tason käyttäjällä on samat ominaisuudet kuin tavallisella käyttäjällä, mutta ylläpitäjä voi lisäksi selata kaupan ostoshistoriaa, lisätä tuotteita kauppaan, lisätä tuotteiden varastoa, sekä poistaa käyttäjiä ja tuotteita.
 
 ### Toteuttamatta jääneet toiminallisuudet:
 
 - Tekomaksutapahtuma on hyvin yksinkertaistettu ja tyhjä/tylsä. Myöskään yksittäinen käyttäjä ei voi selata omaa henkilökohtaista ostoshistoriaansa. Ylläpitäjä ei myöskään voi suoraan muunnella tuotteiden informaatiota, varastoa lukuunottamatta, vaan joutuu poistamaan ja lisäämään tuotteen uudelleen, mikäli tarve nimi/kuvaus muutoksille tulisi.
 
+- Ostoskoriin lisääminen tapahtuu myös kerralla "könttänä". Jos haluat poistaa/lisätä tietyn määrän tuotetta korista, se ei ole mahdollista vaan joudut päivittämään halutun määrän aina erikseen.
+
 ### Tiedettyjä bugeja:
 
 - Store-välilehden Reset-nappi ei toimi oikein jos kaupassa ei ole tuotteita.
-- Lisää bugeja saattaa esiintyä muilla järjestelmillä.
+- Lisää bugeja saattaa esiintyä muilla järjestelmillä ja on mahdollisesti jäänyt huomaamatta minulta.
 
 ### Ohjeet testaamiseen
 
@@ -61,7 +63,7 @@ pip install -r ./project-dependencies.txt
 ```
 
 - Luo sovelluksen tietokantataulut skeemaasi tables.sql-tiedostosta
-- HUOM! Tietokantaan on tullut muutoksia Välipalautus 2-vaiheesta. Uudelleenalustus on välttämätöntä.
+- HUOM! Tietokantaan on tullut muutoksia lopulliseen palautukseen. Uudelleenalustus on välttämätöntä.
 
 - Luo ylläpitäjä-tason käyttäjä rekisteröitymis-sivulta hyödyntäen admin-salasanaa, joka löytyy routes.py-tiedoston alusta:
 
