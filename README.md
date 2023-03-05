@@ -63,9 +63,9 @@ pip install -r ./project-dependencies.txt
 ```
 
 - Luo sovelluksen tietokantataulut skeemaasi tables.sql-tiedostosta
-- HUOM! Tietokantaan on tullut muutoksia lopulliseen palautukseen. Uudelleenalustus on välttämätöntä.
+- HUOM! Tietokantaan on tullut muutoksia lopulliseen palautukseen edellisistä versioista. Uudelleenalustus on välttämätöntä.
 
-- Luo ylläpitäjä-tason käyttäjä rekisteröitymis-sivulta hyödyntäen admin-salasanaa, joka löytyy routes.py-tiedoston alusta:
+- Luo ylläpitäjä-tason käyttäjä rekisteröitymis-sivulta käyttäen admin-salasanaa, joka löytyy routes.py-tiedoston alusta:
 
 ```
 my_admin_password = "admin123" (routes.py -- tiedoston alussa)
@@ -78,3 +78,7 @@ my_admin_password = "admin123" (routes.py -- tiedoston alussa)
 - Käynnistä sovellus ajamalla routes.py-tiedoston koodi.
 
 - Voit halutessasi kokeilla tietokanta yhteyttä "paikallinenosoite/testdatabase" linkin kautta.
+
+```
+127.0.0.1:5000/testdatabase
+```
