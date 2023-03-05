@@ -202,6 +202,22 @@ def add_to_cart(product_id):
     return render_template("store.html", products=products, add_cart_success=True)
 
 
+@app.route("/remove_from_cart/<string:product_name>")
+def remove_from_cart(product_name):
+
+    products = db_fetcher.get_all_products()
+
+    for index, product_in_cart in enumerate(session["cart"]):
+
+        if product_in_cart["name"] == product_name:
+            session["grand_total"] -= product_in_cart["total_price"]
+            del session["cart"][index]
+
+    session.modified = True
+
+    return render_template("store.html", products=products)
+
+
 @app.route("/add_product", methods=["POST"])
 def add_product():
 
