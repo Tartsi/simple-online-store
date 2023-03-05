@@ -138,21 +138,23 @@ def admin():
     completed_orders = db_fetcher.get_all_completed_orders()
     order_information = []
 
-    for item in completed_orders:
+    if completed_orders is not None:
+    
+        for item in completed_orders:
 
-        user_order_name = item[0]
-        user_products = item[1]
-        order_date_created = item[2]
-        order_address = item[3]
-        order_grand_total = item[4]
+            user_order_name = item[0]
+            user_products = item[1]
+            order_date_created = item[2]
+            order_address = item[3]
+            order_grand_total = item[4]
 
-        order_dict = {"user_order_name": user_order_name,
-                      "user_products": user_products,
-                      "order_date_created": order_date_created,
-                      "order_address": order_address,
-                      "order_grand_total": order_grand_total}
+            order_dict = {"user_order_name": user_order_name,
+                          "user_products": user_products,
+                          "order_date_created": order_date_created,
+                          "order_address": order_address,
+                          "order_grand_total": order_grand_total}
 
-        order_information.append(order_dict)
+            order_information.append(order_dict)
 
     return render_template("admin.html", users=users, order_information=order_information)
 
@@ -235,22 +237,24 @@ def add_product():
         completed_orders = db_fetcher.get_all_completed_orders()
 
         order_information = []
+        
+        if completed_orders is not None:
 
-        for item in completed_orders:
+            for item in completed_orders:
 
-            user_order_name = item[0]
-            user_products = item[1]
-            order_date_created = item[2]
-            order_address = item[3]
-            order_grand_total = item[4]
+                user_order_name = item[0]
+                user_products = item[1]
+                order_date_created = item[2]
+                order_address = item[3]
+                order_grand_total = item[4]
 
-            order_dict = {"user_order_name": user_order_name,
-                          "user_products": user_products,
-                          "order_date_created": order_date_created,
-                          "order_address": order_address,
-                          "order_grand_total": order_grand_total}
+                order_dict = {"user_order_name": user_order_name,
+                              "user_products": user_products,
+                              "order_date_created": order_date_created,
+                              "order_address": order_address,
+                              "order_grand_total": order_grand_total}
 
-            order_information.append(order_dict)
+                order_information.append(order_dict)
 
         if users is None:
             # return this because no admin status user exists
@@ -282,21 +286,23 @@ def increase_product_amount():
         completed_orders = db_fetcher.get_all_completed_orders()
 
         order_information = []
+        
+        if completed_orders is not None:
 
-        for item in completed_orders:
-            user_order_name = item[0]
-            user_products = item[1]
-            order_date_created = item[2]
-            order_address = item[3]
-            order_grand_total = item[4]
+            for item in completed_orders:
+                user_order_name = item[0]
+                user_products = item[1]
+                order_date_created = item[2]
+                order_address = item[3]
+                order_grand_total = item[4]
 
-            order_dict = {"user_order_name": user_order_name,
-                          "user_products": user_products,
-                          "order_date_created": order_date_created,
-                          "order_address": order_address,
-                          "order_grand_total": order_grand_total}
+                order_dict = {"user_order_name": user_order_name,
+                              "user_products": user_products,
+                              "order_date_created": order_date_created,
+                              "order_address": order_address,
+                              "order_grand_total": order_grand_total}
 
-            order_information.append(order_dict)
+                order_information.append(order_dict)
 
         if users is None:
             # return this because no admin status user exists
@@ -435,21 +441,23 @@ def delete_user():
     completed_orders = db_fetcher.get_all_completed_orders()
 
     order_information = []
+    
+    if completed_orders is not None:
 
-    for item in completed_orders:
-        user_order_name = item[0]
-        user_products = item[1]
-        order_date_created = item[2]
-        order_address = item[3]
-        order_grand_total = item[4]
+        for item in completed_orders:
+            user_order_name = item[0]
+            user_products = item[1]
+            order_date_created = item[2]
+            order_address = item[3]
+            order_grand_total = item[4]
 
-        order_dict = {"user_order_name": user_order_name,
-                      "user_products": user_products,
-                      "order_date_created": order_date_created,
-                      "order_address": order_address,
-                      "order_grand_total": order_grand_total}
+            order_dict = {"user_order_name": user_order_name,
+                          "user_products": user_products,
+                          "order_date_created": order_date_created,
+                          "order_address": order_address,
+                          "order_grand_total": order_grand_total}
 
-        order_information.append(order_dict)
+            order_information.append(order_dict)
 
     if request.method == "GET":
 
