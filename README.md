@@ -82,3 +82,42 @@ my_admin_password = "admin123" (routes.py -- tiedoston alussa)
 ```
 127.0.0.1:5000/testdatabase
 ```
+
+# <ins>*Loppuarvionti*</ins>
+
+### Feedback:
+
+- Kaikista palautuksista täydet pisteet.
+- Annoit hyödyllistä vertaispalautetta muille opiskelijoille.
+- Tietokanta on suunniteltu järkevästi ja se käyttää relaatioita oikein.
+- Taulut ja sarakkeet on nimetty kuvaavasti ja yhdenmukaisesti englanniksi.
+- Koodissa ei tehdä asioita, jotka voi mielekkäästi tehdä SQL:ssä. Hyvä.
+- Tietokantaa käsitellään monipuolisesti SQL-komennoilla (JOIN, REFERENCES ja aggregaatti funktiot: COUNT / SUM yms.).
+- Sovelluksessa on tietokanta, jossa on noin 5–10 taulua.
+- Virhetilanteissa tulee asianmukainen virheilmoitus, joka kertoo käyttäjälle, mikä meni vikaan ja mitä sen tilanteen korjaaminen vaatii.
+- Sovellus toimii, kun käyttäjä testaa sitä, ilman käsittelemättömiä virhetilanteita (esim. 400, 500, yms.).
+- Sovelluksen käyttöliittymä ja ulkoasu ovat viimeisteltyjä.
+- Sovellusta on miellyttävää käyttää. Käyttöliittymä ottaa käyttäjän huomioon ja käyttäjälle on selvää, mitä sovelluksen toiminnot tekevät.
+- Commitit ovat hyviä kokonaisuuksia (ei liian suuria, rajoitettu yhteen ominaisuuteen per commit) ja niissä on hyvät englanninkieliset viestit.
+- Tiedosto README.md antaa hyvän kuvan sovelluksesta ja schema.sql antaa hyvän kuvan tietokannan suunnittelusta.
+- Versionhallinnassa ei ole sinne kuulumattomia tiedostoja.
+- Koodi on jaettu järkevästi osiin moduuleiksi ja funktioiksi.
+- Koodi on selkeää, suoraviivaista, tiivistä ja sen muotoilu seuraa Pythonin tyyliohjetta.
+- Koodin muuttuja ja funktionimet yms. on kirjoitettu englanniksi ja ne noudattavat samaa tyyliä.
+- Versionhallinnassa ei ole salaista tietoa.
+- Sovelluksesta löytyy koodia CSRF-haavoittuvuuksia vastaan.
+- Käyttäjä ei pääse käsiksi tietoon, johon hänellä ei ole oikeutta.
+- Käyttäjän syötteet tarkastetaan ennen tietokantaan tallentamista.
+- Salasanat tallennetaan tietokantaan asianmukaisesti.
+- Sovelluksessa ei ole SQL-injektiota eikä XSS-haavoittuvuuksia.
+
+- Yhteenvetona:
+  
+- Koodi on siistiä, hyvin jaoteltua ja dokumentoitua.
+- Kuvatut toiminnallisuudet toimii ja on niin admin kuin peruskäyttäjiäkin.
+- Virheilmoitukset järkeviä.
+- Ulkonäkö selkeä.
+- Tietokanta kutsuilla tehty esim avg laskeminen, hyvä!
+- Yleisesti ottaen selkeä sovellus ja tietokanta on luotu sekä käsitelty kurssin vaatimalla tavalla. Hyvää työtä!
+
+- grade 5/5
